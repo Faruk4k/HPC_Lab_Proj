@@ -1,0 +1,24 @@
+Lab 3
+
+Assignment 2
+------------
+- Focus only on loop_2 (fp_bench), loop_3_chain, fmla_bench, simple_triad
+- One metrics extracted for loop_2 and reasoning results are below:
+-------             ROB-0                                             | ROB-1   | ROB-2   | ROB-3
+issueRate           1.2 (why not 2.0 ?)
+fuBusyRate          0.79 ( alot, which FU is busy ?)
+FuBusy (FloatMult)  399995/500006 (FloatMult operations are the bottleneck)
+ROBFull             0       (ROB size is ok)
+fullRegister        49997 (may need to increase physicall registers)
+lsqFull             0 (make sense as there str no memory references)
+
+Suggestions
+- loop_2, loop_3_chain: Explore Config 1, 2 if we can gain higher IPC or speedup
+- simple_triad: Check if the 'Used BW' is close to the 'peak BW'. 
+                One possibility is to increase in-flight memory requests to gain more BW.
+
+Assignment 3
+------------
+- Completion of this assignment is optional, but it is required if you select 
+  the branch prediction project.
+
