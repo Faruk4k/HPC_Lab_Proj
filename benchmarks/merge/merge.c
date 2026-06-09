@@ -4,6 +4,12 @@
 */
 
 #include <stdio.h>
+# include <sys/time.h>
+# include <time.h>
+#ifdef USEM5OPS
+  #include <gem5/m5ops.h>
+#endif
+
 #include "randArr.h"
 
 #define ASIZE sizeof(randArr)/sizeof(int)
@@ -54,7 +60,27 @@ void mergeSort(int numbers[], int temp[], int array_size) {
 }
  
 int main(int argc, char* argv[]) {
+  struct timespec t0, t1;
+  double  t_elapsed;
+
+  printf("\n----merge----\n");
+  clock_gettime(CLOCK_MONOTONIC, &t0);
+
+#ifdef USEM5OPS
+    m5_reset_stats(0,0); 
+#endif
   mergeSort(randArr, temp, ASIZE);
+#ifdef USEM5OPS
+    m5_dump_stats(0,0);
+#endif
+
+  clock_gettime(CLOCK_MONOTONIC, &t1);
+  t_elapsed = (double) (t1.tv_sec - t0.tv_sec) * 1.0E+09 + 
+              (double) (t1.tv_nsec - t0.tv_nsec); //ns
+
+  //summary
+  // printf("a[%i]=%.2e. b[%i]=%.2e. c[%i]=%.2e.\n", 0, a[0], 0, b[0], 0, c[0]);
+  printf("Execution time: %.6f (ms) \n", t_elapsed/1.0E+06);
  
   if(argc>=2) {
     printf("random_elem:%d, %s\n", randArr[(1+argc) % ASIZE],argv[0]);
