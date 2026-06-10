@@ -17,22 +17,6 @@ double C[N][N];
 
 int loops = 1;
 
-/*
-* Your cache blocking implementation
-*/
-void multiply_blocking()
-{
-
-}
-
-/*
-* Your interchanged implementation
-*/
-void multiply_interchanged()
-{
-
-}
-
 void multiply()
 {
 
