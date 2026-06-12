@@ -2,7 +2,7 @@ CC   = gcc
 LD   = $(CC)
 OBJDUMP = objdump
 
-SVEOPT     = 
+SVEOPT     =
 SUFFIX_SVE =
 
 ifneq ($(SVEOPT),)
@@ -25,24 +25,18 @@ LDFLAGS += -static
 
 SUFFIX = $(SUFFIX_SVE)$(SUFFIX_M5)
 
-.PHONY: clean, veryclean
+.PHONY: clean veryclean
 
+all: quick$(SUFFIX).x quick$(SUFFIX).dump
 
-all: quick$(SUFFIX).x quick-omp$(SUFFIX).x quick$(SUFFIX).dump
-
-quick-omp$(SUFFIX).dump: quick-omp$(SUFFIX).x
-	$(OBJDUMP) --disassemble -mattr=+sve $< > $@
-
-quick-omp$(SUFFIX).x: quick.c
-	$(CC) $(CFLAGS) $< $(LDFLAGS) -fopenmp -o $@
-#	$(CC) $(CFLAGS) $(LDFLAGS) -fopenmp $< $(LIBS) -o $@
-
-quick$(SUFFIX).x: quick.c
+quick$(SUFFIX).x: quick.c randArr.h
 	$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 
 quick$(SUFFIX).dump: quick$(SUFFIX).x
 	$(OBJDUMP) --disassemble $< > $@
 
-
 clean:
 	rm -f *.o *.x *.dump
+
+veryclean: clean
+	rm -f randArr.h
