@@ -5,8 +5,8 @@ set -e
 GEM5=../../gem5/build/ALL/gem5.opt
 CONFIG=run.py
 
-BENCH_NAME=matmult
-BENCH_BIN=../benchmarks/matmult/matmult-m5.x
+BENCH_NAME=spmv
+BENCH_BIN=../benchmarks/spmv/spmv-m5.x
 BENCH_ARGS="2"
 
 STRIDE_CONFIGS=(
