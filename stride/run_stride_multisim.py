@@ -5,8 +5,6 @@ THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 if THIS_DIR not in sys.path:
     sys.path.insert(0, THIS_DIR)
 
-import os
-
 from gem5.resources.resource import BinaryResource
 from gem5.simulate.simulator import Simulator
 from gem5.utils.multisim import multisim

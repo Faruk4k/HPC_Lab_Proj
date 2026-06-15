@@ -3,7 +3,7 @@ import argparse
 from gem5.resources.resource import BinaryResource
 from gem5.simulate.simulator import Simulator
 
-from prefetchers.stride.hardwares import (
+from hardwares import (
     HWBoard,
     MyOutOfOrderCPU,
     MyClassicPrivateL1SharedL2CacheHierarchyBuild,
@@ -12,7 +12,7 @@ from prefetchers.stride.hardwares import (
     MySimpleMemory,
 )
 
-from prefetchers.stride.stride_configs import make_stride_prefetcher
+from stride_configs import make_stride_prefetcher
 
 def get_memory(memory_name):
     if memory_name == "ddr4_1x":

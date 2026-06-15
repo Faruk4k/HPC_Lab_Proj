@@ -1,0 +1,3280 @@
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist1
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist1/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:04:44
+gem5 executing on cn27.guoehi.cluster, pid 163436
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist1/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist1 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.224217 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist4
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist4/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:05:36
+gem5 executing on cn27.guoehi.cluster, pid 163443
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist4/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist4 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.212054 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist8
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist8/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:06:27
+gem5 executing on cn27.guoehi.cluster, pid 163448
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist8/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist8 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203561 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist16
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist16/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:07:18
+gem5 executing on cn27.guoehi.cluster, pid 163453
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist16/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist16 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.213542 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist32
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist32/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:08:10
+gem5 executing on cn27.guoehi.cluster, pid 163463
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist32/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist32 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.238138 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist1
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist1/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:09:01
+gem5 executing on cn27.guoehi.cluster, pid 163472
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist1/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist1 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.205943 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist4
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist4/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:09:55
+gem5 executing on cn27.guoehi.cluster, pid 163478
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist4/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist4 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.204456 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist8
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist8/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:10:47
+gem5 executing on cn27.guoehi.cluster, pid 163487
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist8/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist8 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.204856 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist16
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist16/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:11:39
+gem5 executing on cn27.guoehi.cluster, pid 163492
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist16/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist16 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.214480 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist32
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist32/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:12:31
+gem5 executing on cn27.guoehi.cluster, pid 163498
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist32/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist32 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.240391 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist1
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist1/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:13:23
+gem5 executing on cn27.guoehi.cluster, pid 163503
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist1/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist1 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.204379 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist4
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist4/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:14:16
+gem5 executing on cn27.guoehi.cluster, pid 163508
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist4/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist4 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.202750 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist8
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist8/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:15:09
+gem5 executing on cn27.guoehi.cluster, pid 163514
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist8/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist8 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203964 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist16
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist16/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:16:01
+gem5 executing on cn27.guoehi.cluster, pid 163520
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist16/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist16 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.222976 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist32
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist32/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:16:56
+gem5 executing on cn27.guoehi.cluster, pid 163525
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist32/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist32 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.241719 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist1
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist1/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:17:50
+gem5 executing on cn27.guoehi.cluster, pid 163530
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist1/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist1 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.186824 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist4
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist4/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:18:45
+gem5 executing on cn27.guoehi.cluster, pid 163537
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist4/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist4 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.199423 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist8
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist8/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:19:40
+gem5 executing on cn27.guoehi.cluster, pid 163542
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist8/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist8 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203920 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist16
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist16/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:20:34
+gem5 executing on cn27.guoehi.cluster, pid 163551
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist16/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist16 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.214217 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist32
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist32/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:21:28
+gem5 executing on cn27.guoehi.cluster, pid 163556
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist32/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist32 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.248502 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist1
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist1/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:22:22
+gem5 executing on cn27.guoehi.cluster, pid 163562
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist1/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist1 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.219975 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist4
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist4/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:23:19
+gem5 executing on cn27.guoehi.cluster, pid 163568
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist4/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist4 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.228057 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist8
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist8/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:24:17
+gem5 executing on cn27.guoehi.cluster, pid 163573
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist8/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist8 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.227621 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist16
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist16/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:25:14
+gem5 executing on cn27.guoehi.cluster, pid 163580
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist16/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist16 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.229172 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist32
+Prefetch level    : l1d
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist32/l1d/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:26:12
+gem5 executing on cn27.guoehi.cluster, pid 163585
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist32/l1d/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist32 --pf-level l1d --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.249232 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist1
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist1/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:27:09
+gem5 executing on cn27.guoehi.cluster, pid 163590
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist1/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist1 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg1_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.202769 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist4
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist4/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:28:00
+gem5 executing on cn27.guoehi.cluster, pid 163595
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist4/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist4 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg1_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.201883 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist8
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist8/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:28:50
+gem5 executing on cn27.guoehi.cluster, pid 163602
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist8/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist8 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg1_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.196823 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist16
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist16/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:29:40
+gem5 executing on cn27.guoehi.cluster, pid 163607
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist16/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist16 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg1_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.213968 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist32
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg1_dist32/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:30:30
+gem5 executing on cn27.guoehi.cluster, pid 163616
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist32/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist32 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg1_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.242236 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist1
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist1/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:31:19
+gem5 executing on cn27.guoehi.cluster, pid 163621
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist1/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist1 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg4_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.185857 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist4
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist4/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:32:09
+gem5 executing on cn27.guoehi.cluster, pid 163628
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist4/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist4 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg4_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.191925 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist8
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist8/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:32:59
+gem5 executing on cn27.guoehi.cluster, pid 163633
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist8/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist8 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg4_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203773 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist16
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist16/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:33:49
+gem5 executing on cn27.guoehi.cluster, pid 163639
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist16/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist16 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg4_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.213902 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist32
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg4_dist32/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:34:39
+gem5 executing on cn27.guoehi.cluster, pid 163644
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist32/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist32 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg4_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.249263 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist1
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist1/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:35:28
+gem5 executing on cn27.guoehi.cluster, pid 163650
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist1/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist1 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg8_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.189808 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist4
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist4/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:36:18
+gem5 executing on cn27.guoehi.cluster, pid 163655
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist4/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist4 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg8_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203647 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist8
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist8/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:37:08
+gem5 executing on cn27.guoehi.cluster, pid 163660
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist8/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist8 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg8_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.207756 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist16
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist16/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:37:58
+gem5 executing on cn27.guoehi.cluster, pid 163665
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist16/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist16 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg8_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.219427 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist32
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg8_dist32/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:38:49
+gem5 executing on cn27.guoehi.cluster, pid 163672
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist32/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist32 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg8_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.249987 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist1
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist1/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:39:39
+gem5 executing on cn27.guoehi.cluster, pid 163677
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist1/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist1 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg16_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.187776 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist4
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist4/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:40:29
+gem5 executing on cn27.guoehi.cluster, pid 163686
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist4/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist4 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg16_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.198156 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist8
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist8/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:41:19
+gem5 executing on cn27.guoehi.cluster, pid 163691
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist8/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist8 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg16_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.203128 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist16
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist16/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:42:08
+gem5 executing on cn27.guoehi.cluster, pid 163698
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist16/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist16 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg16_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.217990 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist32
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg16_dist32/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:42:58
+gem5 executing on cn27.guoehi.cluster, pid 163703
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist32/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist32 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg16_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.252247 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist1
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist1/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:43:47
+gem5 executing on cn27.guoehi.cluster, pid 163708
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist1/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist1 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg32_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.186235 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist4
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist4/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:44:37
+gem5 executing on cn27.guoehi.cluster, pid 163714
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist4/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist4 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg32_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.191789 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist8
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist8/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:45:28
+gem5 executing on cn27.guoehi.cluster, pid 163720
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist8/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist8 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg32_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.198797 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist16
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist16/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:46:18
+gem5 executing on cn27.guoehi.cluster, pid 163725
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist16/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist16 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg32_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.216211 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist32
+Prefetch level    : l2
+Memory            : ddr4_1x
+Output dir        : results/matmult/stride/deg32_dist32/l2/ddr4_1x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:47:08
+gem5 executing on cn27.guoehi.cluster, pid 163730
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist32/l2/ddr4_1x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist32 --pf-level l2 --memory ddr4_1x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_1x
+Prefetcher     : stride
+PF level       : l2
+Stride config  : deg32_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.244467 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist1
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg1_dist1/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:47:57
+gem5 executing on cn27.guoehi.cluster, pid 163735
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist1/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist1 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.244743 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist4
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg1_dist4/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:48:50
+gem5 executing on cn27.guoehi.cluster, pid 163742
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist4/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist4 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.217577 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist8
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg1_dist8/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:49:42
+gem5 executing on cn27.guoehi.cluster, pid 163748
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist8/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist8 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.217544 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist16
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg1_dist16/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:50:35
+gem5 executing on cn27.guoehi.cluster, pid 163757
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist16/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist16 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.222751 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg1_dist32
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg1_dist32/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:51:29
+gem5 executing on cn27.guoehi.cluster, pid 163762
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg1_dist32/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg1_dist32 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg1_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.254345 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist1
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg4_dist1/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:52:21
+gem5 executing on cn27.guoehi.cluster, pid 163768
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist1/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist1 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.216174 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist4
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg4_dist4/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:53:14
+gem5 executing on cn27.guoehi.cluster, pid 163773
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist4/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist4 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.207302 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist8
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg4_dist8/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:54:07
+gem5 executing on cn27.guoehi.cluster, pid 163778
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist8/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist8 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.215833 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist16
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg4_dist16/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:54:59
+gem5 executing on cn27.guoehi.cluster, pid 163783
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist16/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist16 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.221835 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg4_dist32
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg4_dist32/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:55:51
+gem5 executing on cn27.guoehi.cluster, pid 163789
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg4_dist32/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg4_dist32 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg4_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.254607 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist1
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg8_dist1/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:56:43
+gem5 executing on cn27.guoehi.cluster, pid 163794
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist1/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist1 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.209123 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist4
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg8_dist4/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:57:36
+gem5 executing on cn27.guoehi.cluster, pid 163799
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist4/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist4 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.208695 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist8
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg8_dist8/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:58:29
+gem5 executing on cn27.guoehi.cluster, pid 163805
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist8/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist8 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.216953 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist16
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg8_dist16/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 14:59:22
+gem5 executing on cn27.guoehi.cluster, pid 163810
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist16/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist16 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.252167 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg8_dist32
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg8_dist32/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:00:15
+gem5 executing on cn27.guoehi.cluster, pid 163815
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg8_dist32/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg8_dist32 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg8_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.256320 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist1
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg16_dist1/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:01:07
+gem5 executing on cn27.guoehi.cluster, pid 163824
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist1/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist1 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.192056 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist4
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg16_dist4/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:02:02
+gem5 executing on cn27.guoehi.cluster, pid 163830
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist4/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist4 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist4
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.199109 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist8
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg16_dist8/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:02:56
+gem5 executing on cn27.guoehi.cluster, pid 163836
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist8/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist8 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist8
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.202530 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist16
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg16_dist16/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:03:50
+gem5 executing on cn27.guoehi.cluster, pid 163843
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist16/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist16 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist16
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.213494 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg16_dist32
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg16_dist32/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:04:44
+gem5 executing on cn27.guoehi.cluster, pid 163848
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg16_dist32/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg16_dist32 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg16_dist32
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.249384 (ms) 
+==================================================
+Running benchmark : matmult
+Stride config     : deg32_dist1
+Prefetch level    : l1d
+Memory            : ddr4_2x
+Output dir        : results/matmult/stride/deg32_dist1/l1d/ddr4_2x
+==================================================
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 12 2026 15:05:38
+gem5 executing on cn27.guoehi.cluster, pid 163857
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results/matmult/stride/deg32_dist1/l1d/ddr4_2x run.py --benchmark ../benchmarks/matmult/matmult-m5.x --benchmark-args 1 --prefetcher stride --stride-config deg32_dist1 --pf-level l1d --memory ddr4_2x
+
+========== RUN CONFIG ==========
+Benchmark      : ../benchmarks/matmult/matmult-m5.x
+Benchmark args : ['1']
+CPU            : Out-of-order Armv8
+Clock          : 3GHz
+CPU width      : 4
+ROB size       : 128
+LSQ size       : 64
+L1D            : 16KiB, assoc 8
+L2             : 256KiB, assoc 16
+Memory         : ddr4_2x
+Prefetcher     : stride
+PF level       : l1d
+Stride config  : deg32_dist1
+================================
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented

@@ -1,0 +1,32 @@
+Lab 5
+-----
+Assignment 2
+------------
+1 - Failed installation due to mismatched libs
+Installing...rpm: /software/kp920-RL8/Stages/2022a/software/XZ/5.2.5-GCCcore-12.1.0/lib/liblzma.so.5: version `XZ_5.2' not found (required by /lib64/librpmio.so.8)                                         
+rpm: /software/kp920-RL8/Stages/2022a/software/XZ/5.2.5-GCCcore-12.1.0/lib/liblzma.so.5: version `XZ_5.2' not found (required by /lib64/librpmio.so.8)
+
+   Solution: 
+    $ module unload XZ
+
+2 - Emulating a MVL: For example emulating MVL-2048-bit can be done 
+                      by configuring '-mvl=256' (i.e. 256 x 8 bytes)
+    
+3 - Compiling a code to profile with ArmIE
+  $ make clean; make SVEOPT=SVE ARMIE_USED=y
+
+4 - ROI measurement with ArmIE needs '-a "-roi"'
+
+Assignment 3
+------------
+- 1x DDR3: BW Util is close to peakBW, so does it make sense that a larger MVL improves higher BW ?
+- 2x DDR3: BW Util can not be improved; Do bottlenecks happens inside the memory subsystem ?
+          -> In-flight memory request is important to improve memory performance 
+             So we can look at the MSHR size at each cache level are sufficient
+
+Assignment 4
+------------          
+- Completion of this assignment is optional, but it is required if you select 
+  the SVE exploration project.
+
+  
