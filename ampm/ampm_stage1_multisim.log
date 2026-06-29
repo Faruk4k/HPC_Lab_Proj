@@ -3,8 +3,8 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:11
-gem5 executing on cn21.guoehi.cluster, pid 922970
+gem5 started Jun 29 2026 14:35:55
+gem5 executing on cn21.guoehi.cluster, pid 923086
 command line: ../../gem5/build/ALL/gem5.opt --outdir=results_ampm_stage1 -m gem5.utils.multisim run_ampm_multisim.py
 
 gem5 Simulator System.  https://www.gem5.org
@@ -12,8 +12,8 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:29
-gem5 executing on cn21.guoehi.cluster, pid 922999
+gem5 started Jun 29 2026 14:36:13
+gem5 executing on cn21.guoehi.cluster, pid 923114
 command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s -c 'from multiprocessing.resource_tracker import main;main(5)'
 
 gem5 Simulator System.  https://www.gem5.org
@@ -21,574 +21,78 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:29
-gem5 executing on cn21.guoehi.cluster, pid 923001
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_ampm_amt1024_l2_ddr4_1x_simout.txt --stderr-file=spmv_ampm_ampm_amt1024_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:13
+gem5 executing on cn21.guoehi.cluster, pid 923118
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_sd2_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_sd2_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
 
-info: Error running simulator spmv_ampm_ampm_amt1024_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator matmult_ampm_sd2_l2_ddr4_1x: Class ConfiguredAMPMPrefetcher has no parameter start_degree
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:29
-gem5 executing on cn21.guoehi.cluster, pid 923000
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ampm_amt512_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_ampm_amt512_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:13
+gem5 executing on cn21.guoehi.cluster, pid 923117
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_ls8_l2_ddr4_2x_simout.txt --stderr-file=bfs_ampm_ls8_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
 
-info: Error running simulator matmult_ampm_ampm_amt512_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator bfs_ampm_ls8_l2_ddr4_2x: Class ConfiguredAMPMPrefetcher has no parameter limit_stride
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:29
-gem5 executing on cn21.guoehi.cluster, pid 923002
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_epoch512k_l2_ddr4_2x_simout.txt --stderr-file=merge_ampm_epoch512k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:13
+gem5 executing on cn21.guoehi.cluster, pid 923115
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_epoch128k_l2_ddr4_2x_simout.txt --stderr-file=matmult_ampm_epoch128k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
 
-info: Error running simulator merge_ampm_epoch512k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator matmult_ampm_epoch128k_l2_ddr4_2x: Class ConfiguredAMPMPrefetcher has no parameter epoch_cycles
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:29
-gem5 executing on cn21.guoehi.cluster, pid 923003
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_ampm_amt512_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_ampm_amt512_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:13
+gem5 executing on cn21.guoehi.cluster, pid 923116
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_assoc1_l2_ddr4_1x_simout.txt --stderr-file=merge_ampm_assoc1_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
 
-info: Error running simulator simple_triad_ampm_ampm_amt512_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator merge_ampm_assoc1_l2_ddr4_1x: Class ConfiguredAMPMPrefetcher has no parameter access_map_table_assoc
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:40
-gem5 executing on cn21.guoehi.cluster, pid 923007
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_default_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:24
+gem5 executing on cn21.guoehi.cluster, pid 923119
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ampm_amt32_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_ampm_amt32_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
 
-info: Error running simulator simple_triad_ampm_default_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator quick_ampm_ampm_amt32_l2_ddr4_2x: Class ConfiguredAMPMPrefetcher has no parameter access_map_table_entries
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:40
-gem5 executing on cn21.guoehi.cluster, pid 923004
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_assoc4_l2_ddr4_1x_simout.txt --stderr-file=bfs_ampm_assoc4_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:24
+gem5 executing on cn21.guoehi.cluster, pid 923120
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_sd1_l2_ddr4_1x_simout.txt --stderr-file=simple_triad_ampm_sd1_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
 
-info: Error running simulator bfs_ampm_assoc4_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator simple_triad_ampm_sd1_l2_ddr4_1x: Class ConfiguredAMPMPrefetcher has no parameter start_degree
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:40
-gem5 executing on cn21.guoehi.cluster, pid 923005
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_sd8_l2_ddr4_1x_simout.txt --stderr-file=spmv_ampm_sd8_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
+gem5 started Jun 29 2026 14:36:25
+gem5 executing on cn21.guoehi.cluster, pid 923122
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_sd8_l2_ddr4_2x_simout.txt --stderr-file=matmult_ampm_sd8_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
 
-info: Error running simulator spmv_ampm_sd8_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+info: Error running simulator matmult_ampm_sd8_l2_ddr4_2x: Class ConfiguredAMPMPrefetcher has no parameter start_degree
 gem5 Simulator System.  https://www.gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version 25.0.0.1
 gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:40
-gem5 executing on cn21.guoehi.cluster, pid 923006
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_sd16_l2_ddr4_1x_simout.txt --stderr-file=merge_ampm_sd16_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator merge_ampm_sd16_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:51
-gem5 executing on cn21.guoehi.cluster, pid 923010
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_assoc1_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_assoc1_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_assoc1_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:51
-gem5 executing on cn21.guoehi.cluster, pid 923012
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ls4_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_ls4_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_ls4_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:51
-gem5 executing on cn21.guoehi.cluster, pid 923009
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ampm_hz256_l2_ddr4_1x_simout.txt --stderr-file=quick_ampm_ampm_hz256_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_ampm_hz256_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:20:51
-gem5 executing on cn21.guoehi.cluster, pid 923011
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ampm_amt256_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_ampm_amt256_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_ampm_amt256_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:02
-gem5 executing on cn21.guoehi.cluster, pid 923015
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_sd2_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_sd2_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_sd2_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:02
-gem5 executing on cn21.guoehi.cluster, pid 923013
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_ampm_hz8k_l2_ddr4_2x_simout.txt --stderr-file=merge_ampm_ampm_hz8k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator merge_ampm_ampm_hz8k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:02
-gem5 executing on cn21.guoehi.cluster, pid 923014
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_ampm_amt1024_l2_ddr4_1x_simout.txt --stderr-file=merge_ampm_ampm_amt1024_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator merge_ampm_ampm_amt1024_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:02
-gem5 executing on cn21.guoehi.cluster, pid 923016
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_assoc2_l2_ddr4_1x_simout.txt --stderr-file=bfs_ampm_assoc2_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_assoc2_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:13
-gem5 executing on cn21.guoehi.cluster, pid 923020
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_sd2_l2_ddr4_1x_simout.txt --stderr-file=spmv_ampm_sd2_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_sd2_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:13
-gem5 executing on cn21.guoehi.cluster, pid 923018
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_sd1_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_sd1_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_sd1_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:13
-gem5 executing on cn21.guoehi.cluster, pid 923019
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_epoch512k_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_epoch512k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_epoch512k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:13
-gem5 executing on cn21.guoehi.cluster, pid 923017
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_sd8_l2_ddr4_2x_simout.txt --stderr-file=spmv_ampm_sd8_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_sd8_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:24
-gem5 executing on cn21.guoehi.cluster, pid 923025
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_sd16_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_sd16_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_sd16_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:24
-gem5 executing on cn21.guoehi.cluster, pid 923026
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_default_l2_ddr4_2x_simout.txt --stderr-file=matmult_ampm_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_default_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:24
-gem5 executing on cn21.guoehi.cluster, pid 923023
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ampm_amt512_l2_ddr4_2x_simout.txt --stderr-file=matmult_ampm_ampm_amt512_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_ampm_amt512_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:24
-gem5 executing on cn21.guoehi.cluster, pid 923024
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_sd8_l2_ddr4_1x_simout.txt --stderr-file=merge_ampm_sd8_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator merge_ampm_sd8_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:35
-gem5 executing on cn21.guoehi.cluster, pid 923029
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_ampm_hz256_l2_ddr4_1x_simout.txt --stderr-file=bfs_ampm_ampm_hz256_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_ampm_hz256_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:35
-gem5 executing on cn21.guoehi.cluster, pid 923027
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_assoc1_l2_ddr4_2x_simout.txt --stderr-file=bfs_ampm_assoc1_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_assoc1_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:35
-gem5 executing on cn21.guoehi.cluster, pid 923028
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_ampm_hz2k_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_ampm_hz2k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_ampm_hz2k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:35
-gem5 executing on cn21.guoehi.cluster, pid 923030
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_ls2_l2_ddr4_2x_simout.txt --stderr-file=merge_ampm_ls2_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator merge_ampm_ls2_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:46
-gem5 executing on cn21.guoehi.cluster, pid 923031
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_epoch64k_l2_ddr4_2x_simout.txt --stderr-file=matmult_ampm_epoch64k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_epoch64k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:46
-gem5 executing on cn21.guoehi.cluster, pid 923033
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_epoch512k_l2_ddr4_2x_simout.txt --stderr-file=bfs_ampm_epoch512k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_epoch512k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:46
-gem5 executing on cn21.guoehi.cluster, pid 923034
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ls16_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_ls16_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_ls16_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:46
-gem5 executing on cn21.guoehi.cluster, pid 923032
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ampm_hz8k_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_ampm_hz8k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_ampm_hz8k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:57
-gem5 executing on cn21.guoehi.cluster, pid 923037
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_ampm_amt512_l2_ddr4_2x_simout.txt --stderr-file=spmv_ampm_ampm_amt512_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_ampm_amt512_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:57
-gem5 executing on cn21.guoehi.cluster, pid 923036
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_assoc1_l2_ddr4_1x_simout.txt --stderr-file=bfs_ampm_assoc1_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_assoc1_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:57
-gem5 executing on cn21.guoehi.cluster, pid 923035
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_ampm_amt256_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_ampm_amt256_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_ampm_amt256_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:21:57
-gem5 executing on cn21.guoehi.cluster, pid 923038
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_sd16_l2_ddr4_2x_simout.txt --stderr-file=bfs_ampm_sd16_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_sd16_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:08
-gem5 executing on cn21.guoehi.cluster, pid 923042
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ampm_amt64_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_ampm_amt64_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_ampm_amt64_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:08
-gem5 executing on cn21.guoehi.cluster, pid 923040
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_default_l2_ddr4_2x_simout.txt --stderr-file=spmv_ampm_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_default_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:08
-gem5 executing on cn21.guoehi.cluster, pid 923041
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_sd16_l2_ddr4_1x_simout.txt --stderr-file=bfs_ampm_sd16_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_sd16_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:08
-gem5 executing on cn21.guoehi.cluster, pid 923043
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_ampm_amt128_l2_ddr4_1x_simout.txt --stderr-file=spmv_ampm_ampm_amt128_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_ampm_amt128_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:19
-gem5 executing on cn21.guoehi.cluster, pid 923047
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_sd1_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_ampm_sd1_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_sd1_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:19
-gem5 executing on cn21.guoehi.cluster, pid 923044
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ls2_l2_ddr4_2x_simout.txt --stderr-file=quick_ampm_ls2_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_ls2_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:19
-gem5 executing on cn21.guoehi.cluster, pid 923046
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=bfs_ampm_ampm_hz8k_l2_ddr4_2x_simout.txt --stderr-file=bfs_ampm_ampm_hz8k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator bfs_ampm_ampm_hz8k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:19
-gem5 executing on cn21.guoehi.cluster, pid 923045
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=spmv_ampm_epoch64k_l2_ddr4_2x_simout.txt --stderr-file=spmv_ampm_epoch64k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator spmv_ampm_epoch64k_l2_ddr4_2x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:30
-gem5 executing on cn21.guoehi.cluster, pid 923051
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=matmult_ampm_ls8_l2_ddr4_1x_simout.txt --stderr-file=matmult_ampm_ls8_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
-
-info: Error running simulator matmult_ampm_ls8_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:30
-gem5 executing on cn21.guoehi.cluster, pid 923052
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_epoch512k_l2_ddr4_1x_simout.txt --stderr-file=simple_triad_ampm_epoch512k_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=16)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_epoch512k_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:30
-gem5 executing on cn21.guoehi.cluster, pid 923049
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=simple_triad_ampm_ls4_l2_ddr4_1x_simout.txt --stderr-file=simple_triad_ampm_ls4_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
-
-info: Error running simulator simple_triad_ampm_ls4_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
-gem5 Simulator System.  https://www.gem5.org
-gem5 is copyrighted software; use the --copyright option for details.
-
-gem5 version 25.0.0.1
-gem5 compiled May  5 2026 12:55:05
-gem5 started Jun 29 2026 14:22:30
-gem5 executing on cn21.guoehi.cluster, pid 923050
-command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=quick_ampm_ampm_amt512_l2_ddr4_1x_simout.txt --stderr-file=quick_ampm_ampm_amt512_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
-
-info: Error running simulator quick_ampm_ampm_amt512_l2_ddr4_1x: BasePrefetcher.__init__() takes 1 positional argument but 2 were given
-Error setting param MyL2Cache.prefetcher to <orphan ConfiguredAMPMPrefetcher>
-
+gem5 started Jun 29 2026 14:36:25
+gem5 executing on cn21.guoehi.cluster, pid 923121
+command line: /home/fdemirel/HPC_Lab_Proj/ampm/../../gem5/build/ALL/gem5.opt -s --outdir=results_ampm_stage1 --stdout-file=merge_ampm_epoch512k_l2_ddr4_2x_simout.txt --stderr-file=merge_ampm_epoch512k_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=11)' --multiprocessing-fork
+
+info: Error running simulator merge_ampm_epoch512k_l2_ddr4_2x: Class ConfiguredAMPMPrefetcher has no parameter epoch_cycles

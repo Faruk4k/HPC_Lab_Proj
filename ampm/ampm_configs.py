@@ -1,4 +1,4 @@
-from m5.objects import AccessMapPatternMatching
+from m5.objects import AMPMPrefetcher
 
 ampm_configurations = {
     # Baseline
@@ -91,7 +91,7 @@ def make_ampm_prefetcher(config_name):
 
     params = ampm_configurations[config_name]
 
-    class ConfiguredAMPMPrefetcher(AccessMapPatternMatching):
+    class ConfiguredAMPMPrefetcher(AMPMPrefetcher):
         def __init__(self):
             super().__init__(**params)
 
