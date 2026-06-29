@@ -10,7 +10,7 @@ stride_configurations = {
 
     "deg4_dist1": {"degree": 4, "distance": 1},
     "deg4_dist4": {"degree": 4, "distance": 4},
-    "deg4_dist8": {"degree": 4, "distance": 8},
+    "deg4_dist8": {"degree": 4, "distance": 8}, # Default config in gem5
     "deg4_dist16": {"degree": 4, "distance": 16},
     "deg4_dist32": {"degree": 4, "distance": 32},
 
