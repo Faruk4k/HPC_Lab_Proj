@@ -16,8 +16,6 @@ STRIDE = Path("stride/stride_results_vs_nopf.csv")
 # Prefer the final IMP file including Stage 3. Fall back to older files if needed.
 IMP_CANDIDATES = [
     Path("imp/imp_all_stages_including_stage3_vs_nopf.csv"),
-    Path("imp/imp_all_stages_vs_nopf.csv"),
-    Path("imp/imp_results_with_speedup.csv"),
 ]
 
 BENCHMARKS = ["simple_triad", "spmv", "bfs", "merge", "quick", "matmult"]
