@@ -61,7 +61,7 @@ MEMORIES = {
     "ddr4_2x": DDR4_2x,
 }
 
-PF_LEVELS = ["l2"]
+PF_LEVELS = ["l1d"]
 
 
 def make_board(memory_name, pf_level, ampm_config_name):

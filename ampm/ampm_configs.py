@@ -1,4 +1,4 @@
-from m5.objects import AMPMPrefetcher
+from m5.objects import AMPMPrefetcher, AccessMapPatternMatching
 
 ampm_configurations = {
     # Baseline
@@ -17,54 +17,107 @@ ampm_configurations = {
     "sd16": {"start_degree": 16},
 
     # hot_zone_size
-    "ampm_hz256": {
+    # l2
+    # "hz256": {
+    #     "hot_zone_size": "256B",
+    #     "access_map_table_entries": "1024",
+    # },
+    # "hz512": {
+    #     "hot_zone_size": "512B",
+    #     "access_map_table_entries": "512",
+    # },
+    # "hz1k": {
+    #     "hot_zone_size": "1KiB",
+    #     "access_map_table_entries": "256",
+    # },
+    # "hz2k": {
+    #     "hot_zone_size": "2KiB",
+    #     "access_map_table_entries": "128",
+    # },
+    # "hz4k": {
+    #     "hot_zone_size": "4KiB",
+    #     "access_map_table_entries": "64",
+    # },
+    # "hz8k": {
+    #     "hot_zone_size": "8KiB",
+    #     "access_map_table_entries": "32",
+    # },
+    # l1d
+    "hz256": {
         "hot_zone_size": "256B",
-        "access_map_table_entries": "1024",
-    },
-    "ampm_hz512": {
-        "hot_zone_size": "512B",
-        "access_map_table_entries": "512",
-    },
-    "ampm_hz1k": {
-        "hot_zone_size": "1KiB",
-        "access_map_table_entries": "256",
-    },
-    "ampm_hz2k": {
-        "hot_zone_size": "2KiB",
-        "access_map_table_entries": "128",
-    },
-    "ampm_hz4k": {
-        "hot_zone_size": "4KiB",
         "access_map_table_entries": "64",
     },
-    "ampm_hz8k": {
-        "hot_zone_size": "8KiB",
+    "hz512": {
+        "hot_zone_size": "512B",
         "access_map_table_entries": "32",
+    },
+    "hz1k": {
+        "hot_zone_size": "1KiB",
+        "access_map_table_entries": "16",
+    },
+    "hz2k": {
+        "hot_zone_size": "2KiB",
+        "access_map_table_entries": "8",
+    },
+    "hz4k": {
+        "hot_zone_size": "4KiB",
+        "access_map_table_entries": "4",
+    },
+    "hz8k": {
+        "hot_zone_size": "8KiB",
+        "access_map_table_entries": "2",
     },
 
     # access_map_table_entries
-    "ampm_amt32": {
-        "access_map_table_entries": "32",
+    #l2
+    # "amt32": {
+    #     "access_map_table_entries": "32",
+    #     "hot_zone_size": "8KiB",
+    # },
+    # "amt64": {
+    #     "access_map_table_entries": "64",
+    #     "hot_zone_size": "4KiB",
+    # },
+    # "amt128": {
+    #     "access_map_table_entries": "128",
+    #     "hot_zone_size": "2KiB",
+    # },
+    # "amt256": {
+    #     "access_map_table_entries": "256",
+    #     "hot_zone_size": "1KiB",
+    # },
+    # "amt512": {
+    #     "access_map_table_entries": "512",
+    #     "hot_zone_size": "512B",
+    # },
+    # "amt1024": {
+    #     "access_map_table_entries": "1024",
+    #     "hot_zone_size": "256B",
+    # },
+    #l1d
+    # access_map_table_entries
+    "amt2": {
+        "access_map_table_entries": "2",
         "hot_zone_size": "8KiB",
     },
-    "ampm_amt64": {
-        "access_map_table_entries": "64",
+    "amt4": {
+        "access_map_table_entries": "4",
         "hot_zone_size": "4KiB",
     },
-    "ampm_amt128": {
-        "access_map_table_entries": "128",
+    "amt8": {
+        "access_map_table_entries": "8",
         "hot_zone_size": "2KiB",
     },
-    "ampm_amt256": {
-        "access_map_table_entries": "256",
+    "amt16": {
+        "access_map_table_entries": "16",
         "hot_zone_size": "1KiB",
     },
-    "ampm_amt512": {
-        "access_map_table_entries": "512",
+    "amt32": {
+        "access_map_table_entries": "32",
         "hot_zone_size": "512B",
     },
-    "ampm_amt1024": {
-        "access_map_table_entries": "1024",
+    "amt64": {
+        "access_map_table_entries": "64",
         "hot_zone_size": "256B",
     },
 
@@ -93,6 +146,8 @@ def make_ampm_prefetcher(config_name):
 
     class ConfiguredAMPMPrefetcher(AMPMPrefetcher):
         def __init__(self):
-            super().__init__(**params)
+            super().__init__(
+                ampm=AccessMapPatternMatching(**params)
+            )
 
     return ConfiguredAMPMPrefetcher
