@@ -101,6 +101,53 @@ best_nextline = best_per_case(nextline, "Next-line")
 best_stride = best_per_case(stride, "Stride")
 best_imp = best_per_case(imp[imp["prefetcher"] != "none"].copy(), "IMP")
 
+
+def default_per_case(df, family_name):
+    """
+    Return default config per benchmark × pf_level × memory.
+    """
+    if "config" not in df.columns:
+        return pd.DataFrame()
+
+    default_df = df[df["config"] == "default"].copy()
+
+    if default_df.empty:
+        print(f"WARNING: No default rows found for {family_name}")
+        return pd.DataFrame()
+
+    out = (
+        default_df.sort_values("speedup_vs_nopf", ascending=False)
+        .groupby(["benchmark", "pf_level", "memory"], as_index=False)
+        .first()
+    )
+
+    out = out[
+        ["benchmark", "pf_level", "memory", "config", "speedup_vs_nopf", "simSeconds"]
+    ].copy()
+
+    out["family"] = family_name
+    return out
+
+
+default_nextline = default_per_case(nextline, "Next-line")
+default_stride = default_per_case(stride, "Stride")
+default_imp = default_per_case(imp[imp["prefetcher"] != "none"].copy(), "IMP")
+
+family_defaults = pd.concat(
+    [default_nextline, default_stride, default_imp],
+    ignore_index=True,
+)
+
+family_defaults.to_csv(
+    OUTDIR / "prefetcher_family_default_configs_vs_nopf.csv",
+    index=False,
+)
+
+default_lookup = {
+    (row["benchmark"], row["pf_level"], row["memory"], row["family"]): float(row["speedup_vs_nopf"])
+    for _, row in family_defaults.iterrows()
+}
+
 family_best = pd.concat(
     [best_nextline, best_stride, best_imp],
     ignore_index=True,
@@ -213,7 +260,7 @@ for benchmark in BENCHMARKS:
         ax.set_ylabel("Speedup vs no-prefetch baseline")
         ax.tick_params(axis="x", labelrotation=20, labelsize=8)
 
-        for bar, value in zip(bars, values):
+        for bar, value, (_, row) in zip(bars, values, sub.iterrows()):
             ax.text(
                 bar.get_x() + bar.get_width() / 2,
                 value,
@@ -223,16 +270,46 @@ for benchmark in BENCHMARKS:
                 fontsize=8,
             )
 
+            if row["family"] != "No prefetch":
+                key = (
+                    row["benchmark"],
+                    row["pf_level"],
+                    row["memory"],
+                    row["family"],
+                )
+
+                if key in default_lookup:
+                    default_value = default_lookup[key]
+
+                    ax.hlines(
+                        y=default_value,
+                        xmin=bar.get_x(),
+                        xmax=bar.get_x() + bar.get_width(),
+                        color="red",
+                        linewidth=2.5,
+                    )
+
+                    ax.text(
+                        bar.get_x() + bar.get_width() / 2,
+                        default_value,
+                        f"default {default_value:.3f}x",
+                        ha="center",
+                        va="top",
+                        fontsize=7,
+                        color="red",
+                    )
+
     fig.suptitle(
         f"Best prefetcher-family comparison vs no-prefetch baseline — {benchmark}",
         fontsize=18,
     )
 
     handles = [
-        plt.Rectangle((0, 0), 1, 1, color="gray", label="No prefetch"),
-        plt.Rectangle((0, 0), 1, 1, color="C0", label="Best Next-line"),
-        plt.Rectangle((0, 0), 1, 1, color="C1", label="Best Stride"),
-        plt.Rectangle((0, 0), 1, 1, color="C2", label="Best IMP"),
+    plt.Rectangle((0, 0), 1, 1, color="gray", label="No prefetch"),
+    plt.Rectangle((0, 0), 1, 1, color="C0", label="Best Next-line"),
+    plt.Rectangle((0, 0), 1, 1, color="C1", label="Best Stride"),
+    plt.Rectangle((0, 0), 1, 1, color="C2", label="Best IMP"),
+    plt.Line2D([0], [0], color="red", linewidth=2.5, label="Default config"),
     ]
 
     fig.legend(handles=handles, loc="lower center", ncol=4, fontsize=12)
@@ -294,7 +371,7 @@ for pf_level, memory, condition_label in CONDITIONS:
             color=color_for_family(family),
         )
 
-        for bar, value in zip(bars, values):
+        for bar, value, benchmark in zip(bars, values, BENCHMARKS):
             if pd.notna(value):
                 ax.text(
                     bar.get_x() + bar.get_width() / 2,
@@ -305,13 +382,31 @@ for pf_level, memory, condition_label in CONDITIONS:
                     fontsize=8,
                 )
 
+                if family != "No prefetch":
+                    key = (benchmark, pf_level, memory, family)
+
+                    if key in default_lookup:
+                        default_value = default_lookup[key]
+
+                        ax.hlines(
+                            y=default_value,
+                            xmin=bar.get_x(),
+                            xmax=bar.get_x() + bar.get_width(),
+                            color="red",
+                            linewidth=2.5,
+                        )
+
     ax.axhline(1.0, linestyle="--", linewidth=1)
     ax.set_xticks(x)
     ax.set_xticklabels(BENCHMARKS, rotation=20)
     ax.set_ylabel("Speedup vs no-prefetch baseline")
     ax.set_title(f"Best prefetcher-family comparison — {condition_label}")
     ax.legend()
-
+    handles, labels = ax.get_legend_handles_labels()
+    handles.append(plt.Line2D([0], [0], color="red", linewidth=2.5))
+    labels.append("Default config")
+    ax.legend(handles, labels)
+    
     plt.tight_layout()
 
     out = OUTDIR / f"group_{pf_level}_{memory}_prefetcher_family_comparison_vs_nopf.png"

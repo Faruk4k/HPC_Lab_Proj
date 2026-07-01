@@ -24,7 +24,7 @@ spmv,l1d,ddr4_2x,Next-line,deg16,1.6539305301645335,0.00547
 spmv,l1d,ddr4_2x,Stride,deg32_dist1,1.592781690140845,0.00568
 spmv,l1d,ddr4_2x,IMP,s32_dist32_addr16,1.691976809425846,0.005347
 spmv,l2,ddr4_1x,No prefetch,none,1.0,0.010599
-spmv,l2,ddr4_1x,Next-line,deg4,1.3727496438285196,0.007721
+spmv,l2,ddr4_1x,Next-line,default,1.3842235862609378,0.007657
 spmv,l2,ddr4_1x,Stride,deg32_dist1,1.6191567369385886,0.006546
 spmv,l2,ddr4_1x,IMP,s32_sth2,1.7738912133891214,0.005975
 spmv,l2,ddr4_2x,No prefetch,none,1.0,0.009047
@@ -33,19 +33,19 @@ spmv,l2,ddr4_2x,Stride,deg32_dist16,1.5407016348773843,0.005872
 spmv,l2,ddr4_2x,IMP,s32_sth2_dist32_ipd16_addr16,1.7056938159879336,0.005304
 bfs,l1d,ddr4_1x,No prefetch,none,1.0,0.02764
 bfs,l1d,ddr4_1x,Next-line,deg32,1.2059862995767705,0.022919
-bfs,l1d,ddr4_1x,Stride,deg4_dist1,1.3111332479483897,0.021081
+bfs,l1d,ddr4_1x,Stride,default,1.336427811623634,0.020682
 bfs,l1d,ddr4_1x,IMP,aggr_s16_sth2_d32_ipd16_addr16,1.2211177380163465,0.022635
 bfs,l1d,ddr4_2x,No prefetch,none,1.0,0.025176
 bfs,l1d,ddr4_2x,Next-line,deg32,1.2937972146564571,0.019459
-bfs,l1d,ddr4_2x,Stride,deg8_dist1,1.3363057324840766,0.01884
+bfs,l1d,ddr4_2x,Stride,default,1.3521671410924323,0.018619
 bfs,l1d,ddr4_2x,IMP,s32_sth2_pt8,1.2899523492340013,0.019517
 bfs,l2,ddr4_1x,No prefetch,none,1.0,0.02764
 bfs,l2,ddr4_1x,Next-line,deg1,1.1447978793903248,0.024144
-bfs,l2,ddr4_1x,Stride,deg1_dist1,1.276497483027756,0.021653
+bfs,l2,ddr4_1x,Stride,default,1.2889987408478292,0.021443
 bfs,l2,ddr4_1x,IMP,s32_ipd16_addr16,1.0854539742381402,0.025464
 bfs,l2,ddr4_2x,No prefetch,none,1.0,0.025176
 bfs,l2,ddr4_2x,Next-line,deg32,1.2260043827611395,0.020535
-bfs,l2,ddr4_2x,Stride,deg4_dist1,1.2945290004113534,0.019448
+bfs,l2,ddr4_2x,Stride,default,1.311728234252071,0.019193
 bfs,l2,ddr4_2x,IMP,s32_sth2_pt8,1.1985717686265176,0.021005
 merge,l1d,ddr4_1x,No prefetch,none,1.0,0.011631
 merge,l1d,ddr4_1x,Next-line,deg4,1.1851436723048707,0.009814
@@ -68,12 +68,12 @@ quick,l1d,ddr4_1x,Next-line,deg32,1.1828126899234228,0.008227
 quick,l1d,ddr4_1x,Stride,deg8_dist1,1.1779445587701247,0.008261
 quick,l1d,ddr4_1x,IMP,s32_sth2_pt8,1.1555634722717016,0.008421
 quick,l1d,ddr4_2x,No prefetch,none,1.0,0.00967
-quick,l1d,ddr4_2x,Next-line,deg16,1.1759698406907455,0.008223
+quick,l1d,ddr4_2x,Next-line,deg32,1.1759698406907455,0.008223
 quick,l1d,ddr4_2x,Stride,deg8_dist1,1.1712693798449614,0.008256
 quick,l1d,ddr4_2x,IMP,s32_dist8_addr16,1.1528373867429662,0.008388
 quick,l2,ddr4_1x,No prefetch,none,1.0,0.009731
 quick,l2,ddr4_1x,Next-line,deg8,1.1358701996031284,0.008567
-quick,l2,ddr4_1x,Stride,deg8_dist1,1.1330926874708895,0.008588
+quick,l2,ddr4_1x,Stride,default,1.1332246419005474,0.008587
 quick,l2,ddr4_1x,IMP,s32_dist8_addr16,1.124711049468331,0.008652
 quick,l2,ddr4_2x,No prefetch,none,1.0,0.00967
 quick,l2,ddr4_2x,Next-line,deg16,1.1309941520467837,0.00855
@@ -89,7 +89,7 @@ matmult,l1d,ddr4_2x,Stride,deg16_dist1,1.0807660283097418,0.001201
 matmult,l1d,ddr4_2x,IMP,s64_sth8_pt8,1.0656814449917895,0.001218
 matmult,l2,ddr4_1x,No prefetch,none,1.0,0.001279
 matmult,l2,ddr4_1x,Next-line,deg32,1.0978540772532188,0.001165
-matmult,l2,ddr4_1x,Stride,deg4_dist1,1.0711892797319933,0.001194
+matmult,l2,ddr4_1x,Stride,deg16_dist1,1.0711892797319933,0.001194
 matmult,l2,ddr4_1x,IMP,s32_ipd16_pt32,1.0614107883817427,0.001205
 matmult,l2,ddr4_2x,No prefetch,none,1.0,0.001298
 matmult,l2,ddr4_2x,Next-line,deg16,1.1208981001727114,0.001158

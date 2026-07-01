@@ -1,9 +1,10 @@
+
 import os
 import textwrap
 import pandas as pd
 import matplotlib.pyplot as plt
 
-STAGE1 = "imp_results_with_speedup.csv"
+STAGE1 = "imp_results.csv"
 STAGE2 = "imp_stage2_with_comparison.csv"
 STAGE3 = "imp_stage3_with_comparison.csv"
 NOPF = "../baseline/nopf_results.csv"
@@ -18,7 +19,7 @@ stage2 = pd.read_csv(STAGE2)
 stage3 = pd.read_csv(STAGE3)
 nopf = pd.read_csv(NOPF)
 
-common_cols = [
+required_cols = [
     "run", "benchmark", "prefetcher", "config", "pf_level", "memory",
     "simSeconds", "ipc",
     "l1d_demand_misses", "l1d_demand_accesses",
@@ -27,14 +28,19 @@ common_cols = [
     "l2_pf_issued", "l2_pf_useful", "l2_pf_unused",
 ]
 
+# Keep the union of all columns from Stage 1, Stage 2, and Stage 3.
+# This prevents extra metrics such as pfLate, bandwidth, MSHR pressure,
+# DRAM queue length, etc. from being dropped.
+all_cols = sorted(set(stage1.columns) | set(stage2.columns) | set(stage3.columns) | set(required_cols))
+
 for df in [stage1, stage2, stage3]:
-    for col in common_cols:
+    for col in all_cols:
         if col not in df.columns:
             df[col] = pd.NA
 
-stage1 = stage1[common_cols].copy()
-stage2 = stage2[common_cols].copy()
-stage3 = stage3[common_cols].copy()
+stage1 = stage1[all_cols].copy()
+stage2 = stage2[all_cols].copy()
+stage3 = stage3[all_cols].copy()
 
 stage1["stage"] = "stage1"
 stage2["stage"] = "stage2"
@@ -54,20 +60,183 @@ baseline = nopf[["benchmark", "memory", "simSeconds"]].rename(
     columns={"simSeconds": "nopf_simSeconds"}
 )
 
+# Remove old baseline columns from Stage 2/Stage 3 files before merging again.
+imp = imp.drop(
+    columns=[
+        "nopf_simSeconds",
+        "nopf_simSeconds_x",
+        "nopf_simSeconds_y",
+    ],
+    errors="ignore",
+)
+
 imp = imp.merge(baseline, on=["benchmark", "memory"], how="left")
+
+if "nopf_simSeconds" not in imp.columns:
+    raise RuntimeError(f"nopf_simSeconds missing after merge. Columns are: {list(imp.columns)}")
+
 imp["speedup_vs_nopf"] = imp["nopf_simSeconds"] / imp["simSeconds"]
 
+
 # Derived stats.
-imp["pf_issued"] = imp["l1d_pf_issued"].fillna(0) + imp["l2_pf_issued"].fillna(0)
-imp["pf_useful"] = imp["l1d_pf_useful"].fillna(0) + imp["l2_pf_useful"].fillna(0)
-imp["pf_unused"] = imp["l1d_pf_unused"].fillna(0) + imp["l2_pf_unused"].fillna(0)
+# Derived stats.
+def ensure_col(df, col):
+    if col not in df.columns:
+        df[col] = pd.NA
+
+
+def effective_by_level(row, l1d_col, l2_col):
+    l1d_val = row.get(l1d_col, pd.NA)
+    l2_val = row.get(l2_col, pd.NA)
+
+    if row["pf_level"] == "l1d":
+        if pd.notna(l1d_val):
+            return l1d_val
+        return l2_val
+
+    if row["pf_level"] == "l2":
+        if pd.notna(l2_val):
+            return l1d_val if pd.isna(l2_val) else l2_val
+
+    return pd.NA
+
+
+# Make sure the basic columns exist.
+for col in [
+    "l1d_pf_issued", "l1d_pf_useful", "l1d_pf_unused",
+    "l2_pf_issued", "l2_pf_useful", "l2_pf_unused",
+    "l1d_demand_misses", "l1d_demand_accesses",
+    "l2_demand_misses", "l2_demand_accesses",
+]:
+    ensure_col(imp, col)
+
+
+# Use the counters from the cache level where the prefetcher was installed.
+imp["pf_issued"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_issued", "l2_pf_issued"),
+    axis=1,
+)
+
+imp["pf_useful"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_useful", "l2_pf_useful"),
+    axis=1,
+)
+
+imp["pf_unused"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_unused", "l2_pf_unused"),
+    axis=1,
+)
 
 imp["pf_accuracy"] = imp["pf_useful"] / imp["pf_issued"].replace(0, pd.NA)
 imp["pf_unused_ratio"] = imp["pf_unused"] / imp["pf_issued"].replace(0, pd.NA)
 
-imp["l1d_miss_rate"] = imp["l1d_demand_misses"] / imp["l1d_demand_accesses"].replace(0, pd.NA)
-imp["l2_miss_rate"] = imp["l2_demand_misses"] / imp["l2_demand_accesses"].replace(0, pd.NA)
 
+# Miss rates are still useful to compute for both cache levels.
+imp["l1d_miss_rate"] = (
+    imp["l1d_demand_misses"] / imp["l1d_demand_accesses"].replace(0, pd.NA)
+)
+
+imp["l2_miss_rate"] = (
+    imp["l2_demand_misses"] / imp["l2_demand_accesses"].replace(0, pd.NA)
+)
+
+
+# Coverage approximation using the active cache level.
+def effective_coverage(row):
+    useful = row.get("pf_useful", pd.NA)
+
+    if row["pf_level"] == "l1d":
+        misses = row.get("l1d_demand_misses", pd.NA)
+    elif row["pf_level"] == "l2":
+        misses = row.get("l2_demand_misses", pd.NA)
+    else:
+        return pd.NA
+
+    if pd.isna(useful) or pd.isna(misses) or useful + misses == 0:
+        return pd.NA
+
+    return useful / (useful + misses)
+
+
+imp["pf_coverage"] = imp.apply(effective_coverage, axis=1)
+
+
+# Optional extra prefetcher counters, if they exist in the extracted CSVs.
+for col in [
+    "l1d_pf_late", "l2_pf_late",
+    "l1d_pf_removed_full", "l2_pf_removed_full",
+    "l1d_pf_removed_demand", "l2_pf_removed_demand",
+    "l1d_pf_buffer_hit", "l2_pf_buffer_hit",
+    "l1d_pf_identified", "l2_pf_identified",
+    "l1d_prefetcher_read_rate", "l2_prefetcher_read_rate",
+    "l1d_prefetcher_read_bytes", "l2_prefetcher_read_bytes",
+]:
+    ensure_col(imp, col)
+
+
+imp["pf_late"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_late", "l2_pf_late"),
+    axis=1,
+)
+
+imp["pf_late_ratio"] = imp["pf_late"] / imp["pf_issued"].replace(0, pd.NA)
+
+imp["pf_removed_full"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_removed_full", "l2_pf_removed_full"),
+    axis=1,
+)
+
+imp["pf_removed_demand"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_removed_demand", "l2_pf_removed_demand"),
+    axis=1,
+)
+
+imp["pf_buffer_hit"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_buffer_hit", "l2_pf_buffer_hit"),
+    axis=1,
+)
+
+imp["pf_identified"] = imp.apply(
+    lambda r: effective_by_level(r, "l1d_pf_identified", "l2_pf_identified"),
+    axis=1,
+)
+
+imp["pf_removed_full_ratio"] = (
+    imp["pf_removed_full"] / imp["pf_identified"].replace(0, pd.NA)
+)
+
+imp["pf_removed_demand_ratio"] = (
+    imp["pf_removed_demand"] / imp["pf_identified"].replace(0, pd.NA)
+)
+
+imp["pf_buffer_hit_ratio"] = (
+    imp["pf_buffer_hit"] / imp["pf_identified"].replace(0, pd.NA)
+)
+
+imp["prefetcher_read_rate"] = imp.apply(
+    lambda r: effective_by_level(
+        r,
+        "l1d_prefetcher_read_rate",
+        "l2_prefetcher_read_rate",
+    ),
+    axis=1,
+)
+
+imp["prefetcher_read_bytes"] = imp.apply(
+    lambda r: effective_by_level(
+        r,
+        "l1d_prefetcher_read_bytes",
+        "l2_prefetcher_read_bytes",
+    ),
+    axis=1,
+)
+
+
+# DRAM bandwidth utilization, if available.
+if "dram_bw_total" in imp.columns and "dram_peak_bw" in imp.columns:
+    imp["dram_bw_utilization"] = (
+        imp["dram_bw_total"] / (imp["dram_peak_bw"] * 1024 * 1024)
+    )
 
 def make_label(row):
     config = str(row["config"])
@@ -93,13 +262,26 @@ def wrap_labels(labels, width=38):
 
 
 def add_baseline_row(sub, benchmark, pf_level, memory):
-    base = baseline[
-        (baseline["benchmark"] == benchmark)
-        & (baseline["memory"] == memory)
+    base = nopf[
+        (nopf["benchmark"] == benchmark)
+        & (nopf["memory"] == memory)
     ]
 
     if base.empty:
         return sub
+
+    base = base.iloc[0]
+
+    l1d_miss_rate = pd.NA
+    l2_miss_rate = pd.NA
+
+    if "l1d_demand_misses" in nopf.columns and "l1d_demand_accesses" in nopf.columns:
+        if pd.notna(base["l1d_demand_accesses"]) and base["l1d_demand_accesses"] != 0:
+            l1d_miss_rate = base["l1d_demand_misses"] / base["l1d_demand_accesses"]
+
+    if "l2_demand_misses" in nopf.columns and "l2_demand_accesses" in nopf.columns:
+        if pd.notna(base["l2_demand_accesses"]) and base["l2_demand_accesses"] != 0:
+            l2_miss_rate = base["l2_demand_misses"] / base["l2_demand_accesses"]
 
     baseline_row = {
         "run": f"{benchmark}_nopf_{memory}",
@@ -108,22 +290,44 @@ def add_baseline_row(sub, benchmark, pf_level, memory):
         "config": "none",
         "pf_level": pf_level,
         "memory": memory,
-        "simSeconds": float(base["nopf_simSeconds"].iloc[0]),
+        "simSeconds": float(base["simSeconds"]),
         "stage": "baseline",
-        "nopf_simSeconds": float(base["nopf_simSeconds"].iloc[0]),
+        "nopf_simSeconds": float(base["simSeconds"]),
         "speedup_vs_nopf": 1.0,
         "label": "No prefetch baseline",
-        "pf_accuracy": pd.NA,
-        "pf_unused_ratio": pd.NA,
-        "l1d_miss_rate": pd.NA,
-        "l2_miss_rate": pd.NA,
+
+        # Cache behavior
+        "l1d_demand_misses": base.get("l1d_demand_misses", pd.NA),
+        "l1d_demand_accesses": base.get("l1d_demand_accesses", pd.NA),
+        "l2_demand_misses": base.get("l2_demand_misses", pd.NA),
+        "l2_demand_accesses": base.get("l2_demand_accesses", pd.NA),
+        "l1d_miss_rate": l1d_miss_rate,
+        "l2_miss_rate": l2_miss_rate,
+
+        # No prefetcher exists in baseline
         "pf_issued": 0,
         "pf_useful": 0,
         "pf_unused": 0,
+        "pf_accuracy": pd.NA,
+        "pf_unused_ratio": pd.NA,
+        "pf_late": 0,
+        "pf_late_ratio": pd.NA,
+        "pf_coverage": 0,
+
+        # Optional memory pressure stats, if nopf_results.csv has them
+        "mem_avg_rdq_len": base.get("mem_avg_rdq_len", pd.NA),
+        "mem_avg_wrq_len": base.get("mem_avg_wrq_len", pd.NA),
+        "dram_bw_total": base.get("dram_bw_total", pd.NA),
+        "dram_peak_bw": base.get("dram_peak_bw", pd.NA),
+        "dram_avg_q_lat": base.get("dram_avg_q_lat", pd.NA),
+        "dram_avg_mem_acc_lat": base.get("dram_avg_mem_acc_lat", pd.NA),
+
+        # No prefetcher memory traffic
+        "prefetcher_read_rate": 0,
+        "prefetcher_read_bytes": 0,
     }
 
     return pd.concat([sub, pd.DataFrame([baseline_row])], ignore_index=True)
-
 
 def force_include_reference_rows(top, full):
     refs = full[

@@ -1,0 +1,579 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:04
+gem5 executing on cn21.guoehi.cluster, pid 934717
+command line: ../../gem5/build/ALL/gem5.opt --outdir=results_nextline_default -m gem5.utils.multisim run_nextline_multism.py
+
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:05
+gem5 executing on cn21.guoehi.cluster, pid 934745
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s -c 'from multiprocessing.resource_tracker import main;main(5)'
+
+Global frequency set at 1000000000000 ticks per second
+Global frequency set at 1000000000000 ticks per second
+Global frequency set at 1000000000000 ticks per second
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+board.remote_gdb: Listening for connections on port 7002
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7003
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:05
+gem5 executing on cn21.guoehi.cluster, pid 934749
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=quick_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=quick_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=17)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:05
+gem5 executing on cn21.guoehi.cluster, pid 934746
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=spmv_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=spmv_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=10)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/spmv/spmv-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:05
+gem5 executing on cn21.guoehi.cluster, pid 934748
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=bfs_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=bfs_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/bfs/bfs-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:06:05
+gem5 executing on cn21.guoehi.cluster, pid 934747
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=bfs_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=bfs_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=12)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/bfs/bfs-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Beginning BFS ...
+Beginning BFS ...
+----spmv----
+N_ROWS          : 8192 
+N_COLS          : 65536 
+NNZ             : 524155 
+Execution time: 7.651601 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:07:53
+gem5 executing on cn21.guoehi.cluster, pid 934760
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=merge_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=merge_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+----quick sort----
+Array SIZE      : 131072 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x
+Execution time: 8.279736 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:09:58
+gem5 executing on cn21.guoehi.cluster, pid 934770
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=quick_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=quick_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=14)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Finished BFS.
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7003
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:12:07
+gem5 executing on cn21.guoehi.cluster, pid 934783
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=bfs_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=bfs_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/bfs/bfs-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Beginning BFS ...
+
+----merge----
+Execution time: 10.067082 (ms) 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:12:43
+gem5 executing on cn21.guoehi.cluster, pid 934787
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=simple_triad_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=simple_triad_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/simple_triad/simple_triad-m5.x'
+Finished BFS.
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:13:12
+gem5 executing on cn21.guoehi.cluster, pid 934791
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=bfs_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=bfs_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/bfs/bfs-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Beginning BFS ...
+----quick sort----
+Array SIZE      : 131072 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x
+Execution time: 8.623864 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:13:53
+gem5 executing on cn21.guoehi.cluster, pid 934797
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=matmult_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=matmult_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Array SIZE      : 1000000 
+Array LOOP      : 1 
+
+----triad----
+a[0]=7.00e+00. b[0]=2.00e+00. c[0]=1.00e+00.
+Execution time: 1.950242 (ms) 
+   Rate [MB/s]: 12306.2 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:14:18
+gem5 executing on cn21.guoehi.cluster, pid 934800
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=matmult_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=matmult_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.196704 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:14:44
+gem5 executing on cn21.guoehi.cluster, pid 934803
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=spmv_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=spmv_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/spmv/spmv-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.258228 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:15:16
+gem5 executing on cn21.guoehi.cluster, pid 934808
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=simple_triad_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=simple_triad_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/simple_triad/simple_triad-m5.x'
+----spmv----
+N_ROWS          : 8192 
+N_COLS          : 65536 
+NNZ             : 524155 
+Execution time: 7.077544 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:16:35
+gem5 executing on cn21.guoehi.cluster, pid 934814
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=merge_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=merge_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Array SIZE      : 1000000 
+Array LOOP      : 1 
+
+----triad----
+a[0]=7.00e+00. b[0]=2.00e+00. c[0]=1.00e+00.
+Execution time: 2.001714 (ms) 
+   Rate [MB/s]: 11989.7 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:16:54
+gem5 executing on cn21.guoehi.cluster, pid 934817
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=simple_triad_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=simple_triad_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/simple_triad/simple_triad-m5.x'
+Array SIZE      : 1000000 
+Array LOOP      : 1 
+
+----triad----
+a[0]=7.00e+00. b[0]=2.00e+00. c[0]=1.00e+00.
+Execution time: 2.600947 (ms) 
+   Rate [MB/s]: 9227.4 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:18:35
+gem5 executing on cn21.guoehi.cluster, pid 934822
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=spmv_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=spmv_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/spmv/spmv-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+Finished BFS.
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7003
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:18:59
+gem5 executing on cn21.guoehi.cluster, pid 934826
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=matmult_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=matmult_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+Finished BFS.
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:19:27
+gem5 executing on cn21.guoehi.cluster, pid 934831
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=merge_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=merge_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.258934 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7003
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:19:54
+gem5 executing on cn21.guoehi.cluster, pid 934834
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=simple_triad_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=simple_triad_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/simple_triad/simple_triad-m5.x'
+----spmv----
+N_ROWS          : 8192 
+N_COLS          : 65536 
+NNZ             : 524155 
+Execution time: 7.251518 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7002
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:21:01
+gem5 executing on cn21.guoehi.cluster, pid 934845
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=quick_nextline_default_l2_ddr4_2x_simout.txt --stderr-file=quick_nextline_default_l2_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----merge----
+Execution time: 10.083334 (ms) 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:21:28
+gem5 executing on cn21.guoehi.cluster, pid 934848
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=spmv_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=spmv_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/spmv/spmv-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+Array SIZE      : 1000000 
+Array LOOP      : 1 
+
+----triad----
+a[0]=7.00e+00. b[0]=2.00e+00. c[0]=1.00e+00.
+Execution time: 2.675615 (ms) 
+   Rate [MB/s]: 8969.9 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7003
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:21:37
+gem5 executing on cn21.guoehi.cluster, pid 934851
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=quick_nextline_default_l1d_ddr4_1x_simout.txt --stderr-file=quick_nextline_default_l1d_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+----spmv----
+N_ROWS          : 8192 
+N_COLS          : 65536 
+NNZ             : 524155 
+Execution time: 6.515324 (ms) 
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (512 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7001
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:23:54
+gem5 executing on cn21.guoehi.cluster, pid 934859
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=merge_nextline_default_l1d_ddr4_2x_simout.txt --stderr-file=merge_nextline_default_l1d_ddr4_2x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----merge----
+Execution time: 9.823110 (ms) 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x
+Global frequency set at 1000000000000 ticks per second
+src/mem/dram_interface.cc:690: warn: DRAM device capacity (16384 Mbytes) does not match the address range assigned (1024 Mbytes)
+src/base/statistics.hh:279: warn: One of the stats is a legacy stat. Legacy stat is a stat that does not belong to any statistics::Group. Legacy stat is deprecated.
+board.remote_gdb: Listening for connections on port 7000
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 25.0.0.1
+gem5 compiled May  5 2026 12:55:05
+gem5 started Jun 30 2026 14:24:03
+gem5 executing on cn21.guoehi.cluster, pid 934863
+command line: /home/fdemirel/HPC_Lab_Proj/nextline/../../gem5/build/ALL/gem5.opt -s --outdir=results_nextline_default --stdout-file=matmult_nextline_default_l2_ddr4_1x_simout.txt --stderr-file=matmult_nextline_default_l2_ddr4_1x_simerr.txt --stats-file=stats.txt -c 'from multiprocessing.spawn import spawn_main; spawn_main(tracker_fd=7, pipe_handle=13)' --multiprocessing-fork
+
+src/sim/mem_state.cc:443: info: Increasing stack size by one page.
+src/sim/syscall_emul.hh:1121: warn: readlink() called on '/proc/self/exe' may yield unexpected results in various settings.
+      Returning '/home/fdemirel/HPC_Lab_Proj/benchmarks/matmult/matmult-m5.x'
+src/arch/arm/insts/pseudo.cc:174: warn: 	instruction 'bti' unimplemented
+
+----MATRIX MULTIPLICATION----
+
+----Computation starts----
+Loop 0 ... 
+argc = 2, A[argc][argc] = 0.500000, B[argc][argc] = 0.500000, C[argc][argc] = 0.500000 
+Execution time: 1.179429 (ms) 
+----quick sort----
+Array SIZE      : 131072 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x
+Execution time: 8.589609 (ms) 
+----quick sort----
+Array SIZE      : 131072 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/quick/quick-m5.x
+Execution time: 8.328368 (ms) 
+
+----merge----
+Execution time: 9.842387 (ms) 
+random_elem:0, /home/fdemirel/HPC_Lab_Proj/benchmarks/merge/merge-m5.x
+info: Cleaning up processes

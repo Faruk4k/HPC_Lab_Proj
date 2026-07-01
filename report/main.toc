@@ -1,0 +1,27 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}Background \& Related Work}{5}{section.2}%
+\contentsline {section}{\numberline {3}Evaluation Methodology}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Architecture Model}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Evaluated Prefetchers}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Benchmarks}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Experimental Design}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Metrics}{8}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Architecture model}{10}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Benchmarks}{10}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}Metrics}{10}{subsection.3.8}%
+\contentsline {section}{\numberline {4}Evaluation Results}{11}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Overall Speedup Comparison}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Default Versus Tuned Configurations}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Effect of Cache Placement}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Effect of Memory Bandwidth}{12}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Cache Miss Rate Analysis}{13}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Prefetch Accuracy and Coverage}{13}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Timely, Late, and Unused Prefetches}{13}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}Per-Benchmark Discussion}{14}{subsection.4.8}%
+\contentsline {subsubsection}{\numberline {4.8.1}STREAM Triad}{14}{subsubsection.4.8.1}%
+\contentsline {subsubsection}{\numberline {4.8.2}SpMV}{14}{subsubsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.3}Matrix Multiplication}{14}{subsubsection.4.8.3}%
+\contentsline {subsubsection}{\numberline {4.8.4}Merge Sort}{14}{subsubsection.4.8.4}%
+\contentsline {subsubsection}{\numberline {4.8.5}Quick Sort}{14}{subsubsection.4.8.5}%
+\contentsline {subsubsection}{\numberline {4.8.6}BFS}{15}{subsubsection.4.8.6}%
+\contentsline {section}{\numberline {5}Conclusion}{15}{section.5}%

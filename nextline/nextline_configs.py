@@ -1,11 +1,12 @@
 from m5.objects import TaggedPrefetcher
 
 nextline_configurations = {
-    "deg1" : {"degree": 1},
-    "deg4" : {"degree": 4},
-    "deg8" : {"degree": 8},
-    "deg16" : {"degree": 16},
-    "deg32" : {"degree": 32}
+    "default" : {},
+    #"deg1" : {"degree": 1},
+    #"deg4" : {"degree": 4},
+    #"deg8" : {"degree": 8},
+    #"deg16" : {"degree": 16},
+    #"deg32" : {"degree": 32}
 }
 
 
