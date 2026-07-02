@@ -135,17 +135,28 @@ def load_results(root_dir, baseline_map):
 
 
 def select_top_two(results):
+    """Select the top two parameter settings for each case.
+
+    A case is defined by benchmark, cache level, DDR4 memory, and the tuned parameter.
+    """
     groups = defaultdict(list)
 
     for row in results:
-        key = (row["benchmark"], row["memory"], row["pf_level"], row["parameter_family"])
+        key = (
+            row["benchmark"],
+            row["memory"],
+            row["pf_level"],
+            row["parameter_name"],
+        )
         groups[key].append(row)
 
     selected = []
     for key, rows in sorted(groups.items()):
         rows = [r for r in rows if not math.isnan(r["simSeconds"])]
         rows.sort(key=lambda r: r["simSeconds"])
-        for rank, row in enumerate(rows[:2], start=1):
+        parameter_name = key[3]
+        max_rank = 3 if parameter_name in ("access_map_table_entries", "hot_zone_size") else 2
+        for rank, row in enumerate(rows[:max_rank], start=1):
             selected.append({
                 "benchmark": row["benchmark"],
                 "memory": row["memory"],
