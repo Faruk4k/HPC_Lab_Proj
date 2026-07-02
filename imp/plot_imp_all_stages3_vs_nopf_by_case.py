@@ -5,8 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 STAGE1 = "imp_results.csv"
-STAGE2 = "imp_stage2_with_comparison.csv"
-STAGE3 = "imp_stage3_with_comparison.csv"
+STAGE2 = "imp_stage2_results.csv"
+STAGE3 = "imp_stage3_results.csv"
 NOPF = "../baseline/nopf_results.csv"
 
 OUTDIR = "plots_imp_all_stages_vs_nopf_by_case"

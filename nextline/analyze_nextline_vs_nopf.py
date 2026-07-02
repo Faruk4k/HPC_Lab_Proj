@@ -30,10 +30,19 @@ def ensure_col(df, col):
 
 
 def effective_by_level(row, l1d_col, l2_col):
+    l1d_val = row.get(l1d_col, math.nan)
+    l2_val = row.get(l2_col, math.nan)
+
     if row["pf_level"] == "l1d":
-        return row.get(l1d_col, math.nan)
+        if pd.notna(l1d_val):
+            return l1d_val
+        return l2_val
+
     if row["pf_level"] == "l2":
-        return row.get(l2_col, math.nan)
+        if pd.notna(l2_val):
+            return l2_val
+        return l1d_val
+
     return math.nan
 
 

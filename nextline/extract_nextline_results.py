@@ -16,6 +16,49 @@ def get_stat(text, name):
     return float(matches[-1]) if matches else math.nan
 
 
+def get_stat_values_regex(text, name_regex):
+    num = r"([+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)"
+    pattern = rf"^({name_regex})\s+{num}"
+
+    values_by_name = {}
+
+    for match in re.finditer(pattern, text, re.MULTILINE):
+        stat_name = match.group(1)
+        value = float(match.group(2))
+
+        # Keep only the last value for each stat name.
+        values_by_name[stat_name] = value
+
+    return list(values_by_name.values())
+
+
+def get_stat_sum_any(text, exact_name, regex_name):
+    exact = get_stat(text, exact_name)
+
+    if not math.isnan(exact):
+        return exact
+
+    values = get_stat_values_regex(text, regex_name)
+
+    if not values:
+        return math.nan
+
+    return sum(values)
+
+
+def get_stat_mean_any(text, exact_name, regex_name):
+    exact = get_stat(text, exact_name)
+
+    if not math.isnan(exact):
+        return exact
+
+    values = get_stat_values_regex(text, regex_name)
+
+    if not values:
+        return math.nan
+
+    return sum(values) / len(values)
+
 rows = []
 
 for run_name in sorted(os.listdir(ROOT)):
@@ -102,26 +145,88 @@ for run_name in sorted(os.listdir(ROOT)):
         "l2_demand_avg_mshr_miss_latency": get_stat(text, "board.cache_hierarchy.l2cache.demandAvgMshrMissLatency::total"),
 
         # Memory-controller queue pressure
-        "mem_avg_rdq_len": get_stat(text, "board.memory.mem_ctrl.avgRdQLen"),
-        "mem_avg_wrq_len": get_stat(text, "board.memory.mem_ctrl.avgWrQLen"),
-        "mem_num_rd_retry": get_stat(text, "board.memory.mem_ctrl.numRdRetry"),
-        "mem_num_wr_retry": get_stat(text, "board.memory.mem_ctrl.numWrRetry"),
+        # DDR4_1x uses board.memory.mem_ctrl...
+        # DDR4_2x uses board.memory.mem_ctrl0... and board.memory.mem_ctrl1...
+        "mem_avg_rdq_len": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.avgRdQLen",
+            r"board\.memory\.mem_ctrl\d+\.avgRdQLen",
+        ),
+        "mem_avg_wrq_len": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.avgWrQLen",
+            r"board\.memory\.mem_ctrl\d+\.avgWrQLen",
+        ),
+        "mem_num_rd_retry": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.numRdRetry",
+            r"board\.memory\.mem_ctrl\d+\.numRdRetry",
+        ),
+        "mem_num_wr_retry": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.numWrRetry",
+            r"board\.memory\.mem_ctrl\d+\.numWrRetry",
+        ),
 
         # Memory bandwidth
-        "mem_avg_read_bw_sys": get_stat(text, "board.memory.mem_ctrl.avgRdBWSys"),
-        "mem_avg_write_bw_sys": get_stat(text, "board.memory.mem_ctrl.avgWrBWSys"),
+        "mem_avg_read_bw_sys": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.avgRdBWSys",
+            r"board\.memory\.mem_ctrl\d+\.avgRdBWSys",
+        ),
+        "mem_avg_write_bw_sys": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.avgWrBWSys",
+            r"board\.memory\.mem_ctrl\d+\.avgWrBWSys",
+        ),
 
-        "dram_bw_read_total": get_stat(text, "board.memory.mem_ctrl.dram.bwRead::total"),
-        "dram_bw_write_total": get_stat(text, "board.memory.mem_ctrl.dram.bwWrite::total"),
-        "dram_bw_total": get_stat(text, "board.memory.mem_ctrl.dram.bwTotal::total"),
-        "dram_peak_bw": get_stat(text, "board.memory.mem_ctrl.dram.peakBW"),
-        "dram_avg_rd_bw": get_stat(text, "board.memory.mem_ctrl.dram.avgRdBW"),
-        "dram_avg_wr_bw": get_stat(text, "board.memory.mem_ctrl.dram.avgWrBW"),
+        "dram_bw_read_total": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.bwRead::total",
+            r"board\.memory\.mem_ctrl\d+\.dram\.bwRead::total",
+        ),
+        "dram_bw_write_total": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.bwWrite::total",
+            r"board\.memory\.mem_ctrl\d+\.dram\.bwWrite::total",
+        ),
+        "dram_bw_total": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.bwTotal::total",
+            r"board\.memory\.mem_ctrl\d+\.dram\.bwTotal::total",
+        ),
+        "dram_peak_bw": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.peakBW",
+            r"board\.memory\.mem_ctrl\d+\.dram\.peakBW",
+        ),
+        "dram_avg_rd_bw": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.avgRdBW",
+            r"board\.memory\.mem_ctrl\d+\.dram\.avgRdBW",
+        ),
+        "dram_avg_wr_bw": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.dram.avgWrBW",
+            r"board\.memory\.mem_ctrl\d+\.dram\.avgWrBW",
+        ),
 
         # Memory latency
-        "dram_avg_q_lat": get_stat(text, "board.memory.mem_ctrl.dram.avgQLat"),
-        "dram_avg_bus_lat": get_stat(text, "board.memory.mem_ctrl.dram.avgBusLat"),
-        "dram_avg_mem_acc_lat": get_stat(text, "board.memory.mem_ctrl.dram.avgMemAccLat"),
+        "dram_avg_q_lat": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.dram.avgQLat",
+            r"board\.memory\.mem_ctrl\d+\.dram\.avgQLat",
+        ),
+        "dram_avg_bus_lat": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.dram.avgBusLat",
+            r"board\.memory\.mem_ctrl\d+\.dram\.avgBusLat",
+        ),
+        "dram_avg_mem_acc_lat": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.dram.avgMemAccLat",
+            r"board\.memory\.mem_ctrl\d+\.dram\.avgMemAccLat",
+        ),
 
         # Core-side load latency distribution summary
         "load_to_use_samples": get_stat(text, "board.processor.cores.core.lsq0.loadToUse::samples"),
@@ -173,16 +278,48 @@ for run_name in sorted(os.listdir(ROOT)):
         "l2_pf_useful_span_page": get_stat(text, "board.cache_hierarchy.l2cache.prefetcher.pfUsefulSpanPage"),
 
         # Prefetcher memory traffic
-        "l1d_prefetcher_read_bytes": get_stat(text, "board.memory.mem_ctrl.requestorReadBytes::cache_hierarchy.l1dcaches.prefetcher"),
-        "l1d_prefetcher_read_rate": get_stat(text, "board.memory.mem_ctrl.requestorReadRate::cache_hierarchy.l1dcaches.prefetcher"),
-        "l1d_prefetcher_read_accesses": get_stat(text, "board.memory.mem_ctrl.requestorReadAccesses::cache_hierarchy.l1dcaches.prefetcher"),
-        "l1d_prefetcher_read_avg_lat": get_stat(text, "board.memory.mem_ctrl.requestorReadAvgLat::cache_hierarchy.l1dcaches.prefetcher"),
+        "l1d_prefetcher_read_bytes": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadBytes::cache_hierarchy.l1dcaches.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadBytes::cache_hierarchy\.l1dcaches\.prefetcher",
+        ),
+        "l1d_prefetcher_read_rate": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadRate::cache_hierarchy.l1dcaches.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadRate::cache_hierarchy\.l1dcaches\.prefetcher",
+        ),
+        "l1d_prefetcher_read_accesses": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadAccesses::cache_hierarchy.l1dcaches.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadAccesses::cache_hierarchy\.l1dcaches\.prefetcher",
+        ),
+        "l1d_prefetcher_read_avg_lat": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadAvgLat::cache_hierarchy.l1dcaches.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadAvgLat::cache_hierarchy\.l1dcaches\.prefetcher",
+        ),
 
-        "l2_prefetcher_read_bytes": get_stat(text, "board.memory.mem_ctrl.requestorReadBytes::cache_hierarchy.l2cache.prefetcher"),
-        "l2_prefetcher_read_rate": get_stat(text, "board.memory.mem_ctrl.requestorReadRate::cache_hierarchy.l2cache.prefetcher"),
-        "l2_prefetcher_read_accesses": get_stat(text, "board.memory.mem_ctrl.requestorReadAccesses::cache_hierarchy.l2cache.prefetcher"),
-        "l2_prefetcher_read_avg_lat": get_stat(text, "board.memory.mem_ctrl.requestorReadAvgLat::cache_hierarchy.l2cache.prefetcher"),
-    }
+        "l2_prefetcher_read_bytes": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadBytes::cache_hierarchy.l2cache.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadBytes::cache_hierarchy\.l2cache\.prefetcher",
+        ),
+        "l2_prefetcher_read_rate": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadRate::cache_hierarchy.l2cache.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadRate::cache_hierarchy\.l2cache\.prefetcher",
+        ),
+        "l2_prefetcher_read_accesses": get_stat_sum_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadAccesses::cache_hierarchy.l2cache.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadAccesses::cache_hierarchy\.l2cache\.prefetcher",
+        ),
+        "l2_prefetcher_read_avg_lat": get_stat_mean_any(
+            text,
+            "board.memory.mem_ctrl.requestorReadAvgLat::cache_hierarchy.l2cache.prefetcher",
+            r"board\.memory\.mem_ctrl\d+\.requestorReadAvgLat::cache_hierarchy\.l2cache\.prefetcher",
+        ),
+        }
 
     rows.append(row)
 

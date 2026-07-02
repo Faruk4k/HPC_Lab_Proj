@@ -12,6 +12,7 @@ NOPF = Path("baseline/nopf_results.csv")
 
 NEXTLINE = Path("nextline/nextline_results_vs_nopf.csv")
 STRIDE = Path("stride/stride_results_vs_nopf.csv")
+AMPM = Path("ampm/ampm_results_vs_nopf.csv")
 
 # Prefer the final IMP file including Stage 3. Fall back to older files if needed.
 IMP_CANDIDATES = [
@@ -43,6 +44,7 @@ def require_file(path):
 require_file(NOPF)
 require_file(NEXTLINE)
 require_file(STRIDE)
+require_file(AMPM)
 IMP = find_existing(IMP_CANDIDATES)
 
 print(f"Using IMP file: {IMP}")
@@ -50,6 +52,7 @@ print(f"Using IMP file: {IMP}")
 nopf = pd.read_csv(NOPF)
 nextline = pd.read_csv(NEXTLINE)
 stride = pd.read_csv(STRIDE)
+ampm = pd.read_csv(AMPM)
 imp = pd.read_csv(IMP)
 
 
@@ -71,7 +74,7 @@ def ensure_speedup_vs_nopf(df, name):
 nextline = ensure_speedup_vs_nopf(nextline, "nextline")
 stride = ensure_speedup_vs_nopf(stride, "stride")
 imp = ensure_speedup_vs_nopf(imp, "imp")
-
+ampm = ensure_speedup_vs_nopf(ampm, "ampm")
 
 def best_per_case(df, family_name):
     """
@@ -99,6 +102,7 @@ def best_per_case(df, family_name):
 
 best_nextline = best_per_case(nextline, "Next-line")
 best_stride = best_per_case(stride, "Stride")
+best_ampm = best_per_case(ampm, "AMPM")
 best_imp = best_per_case(imp[imp["prefetcher"] != "none"].copy(), "IMP")
 
 
@@ -131,10 +135,11 @@ def default_per_case(df, family_name):
 
 default_nextline = default_per_case(nextline, "Next-line")
 default_stride = default_per_case(stride, "Stride")
+default_ampm = default_per_case(ampm, "AMPM")
 default_imp = default_per_case(imp[imp["prefetcher"] != "none"].copy(), "IMP")
 
 family_defaults = pd.concat(
-    [default_nextline, default_stride, default_imp],
+    [default_nextline, default_stride, default_ampm, default_imp],
     ignore_index=True,
 )
 
@@ -149,7 +154,7 @@ default_lookup = {
 }
 
 family_best = pd.concat(
-    [best_nextline, best_stride, best_imp],
+    [best_nextline, best_stride, best_ampm, best_imp],
     ignore_index=True,
 )
 
@@ -218,9 +223,11 @@ def color_for_family(family):
         return "C0"
     if family == "Stride":
         return "C1"
-    if family == "IMP":
+    if family == "AMPM":
         return "C2"
-    return "C3"
+    if family == "IMP":
+        return "C3"
+    return "C4"
 
 
 for benchmark in BENCHMARKS:
@@ -244,7 +251,7 @@ for benchmark in BENCHMARKS:
             & (bench_df["memory"] == memory)
         ].copy()
 
-        family_order = ["No prefetch", "Next-line", "Stride", "IMP"]
+        family_order = ["No prefetch", "Next-line", "Stride", "AMPM", "IMP"]
         sub["family_order"] = sub["family"].apply(lambda x: family_order.index(x))
         sub = sub.sort_values("family_order")
 
@@ -308,7 +315,8 @@ for benchmark in BENCHMARKS:
     plt.Rectangle((0, 0), 1, 1, color="gray", label="No prefetch"),
     plt.Rectangle((0, 0), 1, 1, color="C0", label="Best Next-line"),
     plt.Rectangle((0, 0), 1, 1, color="C1", label="Best Stride"),
-    plt.Rectangle((0, 0), 1, 1, color="C2", label="Best IMP"),
+    plt.Rectangle((0, 0), 1, 1, color="C2", label="Best AMPM"),
+    plt.Rectangle((0, 0), 1, 1, color="C3", label="Best IMP"),
     plt.Line2D([0], [0], color="red", linewidth=2.5, label="Default config"),
     ]
 
@@ -333,15 +341,16 @@ for pf_level, memory, condition_label in CONDITIONS:
 
     fig, ax = plt.subplots(figsize=(20, 8))
 
-    families = ["No prefetch", "Next-line", "Stride", "IMP"]
-    width = 0.20
+    families = ["No prefetch", "Next-line", "Stride", "AMPM", "IMP"]
+    width = 0.16
     x = list(range(len(BENCHMARKS)))
 
     offsets = {
-        "No prefetch": -1.5 * width,
-        "Next-line": -0.5 * width,
-        "Stride": 0.5 * width,
-        "IMP": 1.5 * width,
+        "No prefetch": -2.0 * width,
+        "Next-line": -1.0 * width,
+        "Stride": 0.0 * width,
+        "AMPM": 1.0 * width,
+        "IMP": 2.0 * width,
     }
 
     for family in families:
@@ -406,7 +415,7 @@ for pf_level, memory, condition_label in CONDITIONS:
     handles.append(plt.Line2D([0], [0], color="red", linewidth=2.5))
     labels.append("Default config")
     ax.legend(handles, labels)
-    
+
     plt.tight_layout()
 
     out = OUTDIR / f"group_{pf_level}_{memory}_prefetcher_family_comparison_vs_nopf.png"
