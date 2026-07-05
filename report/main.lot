@@ -1,6 +1,11 @@
-\contentsline {table}{\numberline {1}{\ignorespaces Simulated architecture parameters.}}{7}{table.1}%
-\contentsline {table}{\numberline {2}{\ignorespaces Evaluated prefetcher families.}}{7}{table.2}%
-\contentsline {table}{\numberline {3}{\ignorespaces Benchmark selection.}}{8}{table.3}%
-\contentsline {table}{\numberline {4}{\ignorespaces Evaluation metrics.}}{9}{table.4}%
-\contentsline {table}{\numberline {5}{\ignorespaces Benchmarks selection.}}{10}{table.5}%
-\contentsline {table}{\numberline {6}{\ignorespaces Metrics.}}{11}{table.6}%
+\contentsline {table}{\numberline {1}{\ignorespaces Simulated architecture parameters.}}{6}{table.1}%
+\contentsline {table}{\numberline {2}{\ignorespaces Next-line configuration parameters.}}{7}{table.2}%
+\contentsline {table}{\numberline {3}{\ignorespaces Stride configuration parameters.}}{7}{table.3}%
+\contentsline {table}{\numberline {4}{\ignorespaces AMPM configuration parameters: Stage 1.}}{7}{table.4}%
+\contentsline {table}{\numberline {5}{\ignorespaces AMPM configuration parameters: Stage 2.}}{8}{table.5}%
+\contentsline {table}{\numberline {6}{\ignorespaces IMP configuration parameters: Stage 1 (one parameter varied at a time).}}{8}{table.6}%
+\contentsline {table}{\numberline {7}{\ignorespaces IMP configuration parameters: Stages 2 and 3 (combined configurations).}}{8}{table.7}%
+\contentsline {table}{\numberline {8}{\ignorespaces Benchmark selection and problem sizes.}}{9}{table.8}%
+\contentsline {table}{\numberline {9}{\ignorespaces Evaluation metrics.}}{10}{table.9}%
+\contentsline {table}{\numberline {10}{\ignorespaces Winning prefetcher family (best tuned configuration) and speedup per evaluation case.}}{11}{table.10}%
+\contentsline {table}{\numberline {11}{\ignorespaces Tuning gain: geometric mean of (best tuned speedup / default speedup) over the four placement/memory cases of each benchmark.}}{13}{table.11}%

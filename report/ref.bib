@@ -10,12 +10,11 @@ edition = {5th},
 
 @TECHREPORT{McCalpin2007,
   author = {John D. McCalpin},
-  title = {STREAM: Sustainable Memory Bandwidth in High Performance Computers},
+  title = {{STREAM}: Sustainable Memory Bandwidth in High Performance Computers},
   institution = {University of Virginia},
   year = {1991-2007},
   address = {Charlottesville, Virginia},
-  note = {{A continually updated technical report. http://www.cs.virginia.edu/stream/}},
-  url = {{http://www.cs.virginia.edu/stream/}}
+  note = {A continually updated technical report. \url{http://www.cs.virginia.edu/stream/}}
 }
 
 @manual{arm-neon-armv8a,
@@ -28,12 +27,161 @@ edition = {5th},
 
 @INPROCEEDINGS{sri-hpca-07,
   author={Srinath, Santhosh and Mutlu, Onur and Kim, Hyesoon and Patt, Yale N.},
-  booktitle={2007 IEEE 13th International Symposium on High Performance Computer Architecture}, 
-  title={Feedback Directed Prefetching: Improving the Performance and Bandwidth-Efficiency of Hardware Prefetchers}, 
+  booktitle={2007 IEEE 13th International Symposium on High Performance Computer Architecture},
+  title={Feedback Directed Prefetching: Improving the Performance and Bandwidth-Efficiency of Hardware Prefetchers},
   year={2007},
-  volume={},
-  number={},
-  pages={63-74},
-  doi={10.1109/HPCA.2007.346185}}
+  pages={63--74},
+  doi={10.1109/HPCA.2007.346185},
+  note={\url{https://doi.org/10.1109/HPCA.2007.346185}}
 }
 
+@ARTICLE{ishii-jilp-11,
+  author  = {Ishii, Yasuo and Inaba, Mary and Hiraki, Kei},
+  title   = {Access Map Pattern Matching for High Performance Data Cache Prefetch},
+  journal = {Journal of Instruction-Level Parallelism},
+  volume  = {13},
+  year    = {2011},
+  note    = {\url{https://jilp.org/vol13/v13paper3.pdf}}
+}
+
+@inproceedings{yu-micro-15,
+  author    = {Yu, Xiangyao and Hughes, Christopher J. and Satish, Nadathur and Devadas, Srinivas},
+  title     = {{IMP}: indirect memory prefetcher},
+  year      = {2015},
+  isbn      = {9781450340342},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/2830772.2830807},
+  doi       = {10.1145/2830772.2830807},
+  booktitle = {Proceedings of the 48th International Symposium on Microarchitecture},
+  pages     = {178--190},
+  numpages  = {13},
+  location  = {Waikiki, Hawaii},
+  series    = {MICRO-48},
+  note      = {\url{https://doi.org/10.1145/2830772.2830807}}
+}
+
+@inproceedings{fzj-hybrid-pf,
+  author    = {Saglam, Berk and Ho, Nam and Falquez, Carlos and Portero, Antoni and Sch\"{a}tzle, Fabian and Suarez, Estela and Pleiter, Dirk},
+  title     = {Data Prefetching on Processors with Heterogeneous Memory},
+  year      = {2024},
+  isbn      = {9798400710919},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3695794.3695800},
+  doi       = {10.1145/3695794.3695800},
+  booktitle = {Proceedings of the International Symposium on Memory Systems},
+  pages     = {45--60},
+  numpages  = {16},
+  keywords  = {Hybrid Memory, Hardware Prefetcher, NUMA},
+  series    = {MEMSYS '24},
+  note      = {\url{https://doi.org/10.1145/3695794.3695800}}
+}
+
+@ARTICLE{arm-hpc-pf-25,
+  author   = {Ho, Nam and Falquez, Carlos and Portero, Antoni and Suarez, Estela and Pleiter, Dirk},
+  journal  = {IEEE Access},
+  title    = {Memory Prefetching Evaluation of Scientific Applications on a Modern {HPC} {Arm}-Based Processor},
+  year     = {2025},
+  volume   = {13},
+  pages    = {85898--85926},
+  keywords = {Prefetching;Bandwidth;Kernel;Hardware;Correlation;Sparse matrices;Single instruction multiple data;Memory management;Layout;High performance computing;Memory prefetcher;high performance computing;computer simulation},
+  doi      = {10.1109/ACCESS.2025.3569533},
+  note     = {\url{https://doi.org/10.1109/ACCESS.2025.3569533}}
+}
+
+@article{binkert-gem5-11,
+  author     = {Binkert, Nathan and Beckmann, Bradford and Black, Gabriel and Reinhardt, Steven K. and Saidi, Ali and Basu, Arkaprava and Hestness, Joel and Hower, Derek R. and Krishna, Tushar and Sardashti, Somayeh and Sen, Rathijit and Sewell, Korey and Shoaib, Muhammad and Vaish, Nilay and Hill, Mark D. and Wood, David A.},
+  title      = {The gem5 simulator},
+  year       = {2011},
+  issue_date = {May 2011},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {39},
+  number     = {2},
+  issn       = {0163-5964},
+  doi        = {10.1145/2024716.2024718},
+  journal    = {SIGARCH Comput. Archit. News},
+  month      = aug,
+  pages      = {1--7},
+  numpages   = {7},
+  note       = {\url{https://doi.org/10.1145/2024716.2024718}}
+}
+
+@misc{lowepower-gem5-20,
+  author = {Lowe-Power, Jason and others},
+  title  = {The gem5 Simulator: Version 20.0+},
+  year   = {2020},
+  note   = {arXiv:2007.03152. \url{https://arxiv.org/abs/2007.03152}}
+}
+
+@ARTICLE{chen-baer-95,
+  author   = {Chen, Tien-Fu and Baer, Jean-Loup},
+  journal  = {IEEE Transactions on Computers},
+  title    = {Effective hardware-based data prefetching for high-performance processors},
+  year     = {1995},
+  volume   = {44},
+  number   = {5},
+  pages    = {609--623},
+  keywords = {Prefetching;Delay;Hardware;Bandwidth;Counting circuits;Computer science;Timing;Predictive models;Bridges;Coherence},
+  doi      = {10.1109/12.381947},
+  note     = {\url{https://doi.org/10.1109/12.381947}}
+}
+
+@article{smith-cache-82,
+  author     = {Smith, Alan Jay},
+  title      = {Cache Memories},
+  year       = {1982},
+  issue_date = {Sept. 1982},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {14},
+  number     = {3},
+  issn       = {0360-0300},
+  doi        = {10.1145/356887.356892},
+  journal    = {ACM Comput. Surv.},
+  month      = sep,
+  pages      = {473--530},
+  numpages   = {58},
+  note       = {\url{https://doi.org/10.1145/356887.356892}}
+}
+
+@article{mittal-survey-16,
+  author     = {Mittal, Sparsh},
+  title      = {A Survey of Recent Prefetching Techniques for Processor Caches},
+  year       = {2016},
+  issue_date = {June 2017},
+  publisher  = {Association for Computing Machinery},
+  address    = {New York, NY, USA},
+  volume     = {49},
+  number     = {2},
+  issn       = {0360-0300},
+  doi        = {10.1145/2907071},
+  journal    = {ACM Comput. Surv.},
+  month      = aug,
+  articleno  = {35},
+  pages      = {35:1--35:35},
+  numpages   = {35},
+  note       = {\url{https://doi.org/10.1145/2907071}}
+}
+
+@book{falsafi-primer,
+  author    = {Falsafi, Babak and Wenisch, Thomas F.},
+  title     = {A Primer on Hardware Prefetching},
+  series    = {Synthesis Lectures on Computer Architecture},
+  publisher = {Morgan \& Claypool Publishers},
+  year      = {2014},
+  note      = {\url{https://ieeexplore.ieee.org/servlet/opac?bknumber=6828870}}
+}
+
+@misc{nowatzki-microbench,
+  author = {Nowatzki, Tony},
+  title  = {{CS 251A} Microbenchmarks},
+  note   = {Course microbenchmark collection, {UCLA} {PolyArch} group. \url{https://github.com/PolyArch/cs251a-microbench}}
+}
+
+@misc{jlp-gem5-assignment,
+  author = {Lowe-Power, Jason},
+  title  = {gem5 Course Assignments, Computer Architecture Course at {UC} {Davis}},
+  note   = {\url{https://github.com/jlpteaching/gem5-assignment3-wq25}}
+}

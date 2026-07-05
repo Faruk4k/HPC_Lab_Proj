@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.20)  1 JUL 2026 00:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.20)  5 JUL 2026 18:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -360,33 +360,35 @@ Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
 \g__lipsum_par_int=\count346
 \l__lipsum_a_int=\count347
 \l__lipsum_b_int=\count348
- (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex)) (page_margin.tex)
-No file main.aux.
+ (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/lipsum\lipsum.ltd.tex)) (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
+) (page_margin.tex) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-Package hyperref Info: Link coloring OFF on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+Package hyperref Info: Link coloring OFF on input line 27.
+ (main.out) (main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-(C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+ (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count349
 \scratchdimen=\dimen181
@@ -439,15 +441,22 @@ File: fc-english.def 2016/01/12
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (titlepage.tex
-<images/logo.png, id=3, 323.00958pt x 56.6624pt>
+<images/logo.png, id=75, 323.00958pt x 56.6624pt>
 File: images/logo.png Graphic file (type png)
 <use images/logo.png>
 Package pdftex.def Info: images/logo.png  used on input line 16.
 (pdftex.def)             Requested size: 319.78047pt x 56.09593pt.
  [1
 
-{C:/Users/faruk.SATAN/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/logo.png>])
-No file main.toc.
+{C:/Users/faruk.SATAN/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./images/logo.png>]) (main.toc
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+ (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+ (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
@@ -455,204 +464,68 @@ No file main.toc.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.25 \newpage
-              [1]
-No file main.lot.
+l.32 \newpage
+              [1] (main.lot)
 \tf@lot=\write5
 \openout5 = `main.lot'.
 
-No file main.lof.
+ (main.lof)
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
-[2] [3]
+ [2] [3]
+Overfull \hbox (2.96881pt too wide) in paragraph at lines 65--66
+\OT1/cmr/m/n/12 Different prefetch-ers tar-get dif-fer-ent types of mem-ory ac-cess pat-terns. Sim-ple spa-tial prefetch-
+ []
 
-LaTeX Warning: Reference `sec:back' on page 4 undefined on input line 49.
-
-
-LaTeX Warning: Reference `sec:eval' on page 4 undefined on input line 49.
-
-
-LaTeX Warning: Reference `sec:eval:res' on page 4 undefined on input line 49.
-
-
-LaTeX Warning: Reference `sec:conc' on page 4 undefined on input line 49.
-
-[4]
-
-LaTeX Warning: Citation `sri-hpca-07' on page 5 undefined on input line 71.
-
-[5]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 94.
- (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+[4] [5] [6]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 138.
+ (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
- (C:\Users\faruk.SATAN\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 138.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[6]
-Overfull \hbox (147.9057pt too wide) in paragraph at lines 149--160
+[7] [8] [9] [10]
+<images/all_conditions_prefetcher_family_comparison_vs_nopf.png, id=241, 1011.78pt x 650.43pt>
+File: images/all_conditions_prefetcher_family_comparison_vs_nopf.png Graphic file (type png)
+<use images/all_conditions_prefetcher_family_comparison_vs_nopf.png>
+Package pdftex.def Info: images/all_conditions_prefetcher_family_comparison_vs_nopf.png  used on input line 353.
+(pdftex.def)             Requested size: 469.75499pt x 301.99028pt.
+
+Overfull \hbox (13.70792pt too wide) in paragraph at lines 361--372
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7] [8]
-Overfull \hbox (6.41118pt too wide) in paragraph at lines 190--207
- [][] 
- []
-
-[9]
-
-LaTeX Warning: Reference `fig:logo' on page 10 undefined on input line 241.
-
-File: images/logo.png Graphic file (type png)
-<use images/logo.png>
-Package pdftex.def Info: images/logo.png  used on input line 244.
-(pdftex.def)             Requested size: 469.75499pt x 82.4065pt.
-
-LaTeX Warning: Reference `tab:bench' on page 10 undefined on input line 251.
-
-
-LaTeX Warning: Reference `tab:metrics' on page 10 undefined on input line 269.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10]
-
-LaTeX Warning: Reference `fig:family-comparison-placeholder' on page 11 undefined on input line 293.
-
-
-LaTeX Warning: File `images/placeholder.png' not found on input line 297.
-
-
-c:/Users/faruk.SATAN/OneDrive - Constructor University/Desktop/HPC_Project/HPC_Lab_Proj/report/main.tex:297: Package pdftex.def Error: File `images/placeholder.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.297 ...th=1.0\linewidth]{images/placeholder.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[11]
-
-LaTeX Warning: File `images/placeholder.png' not found on input line 315.
-
-
-c:/Users/faruk.SATAN/OneDrive - Constructor University/Desktop/HPC_Project/HPC_Lab_Proj/report/main.tex:315: Package pdftex.def Error: File `images/placeholder.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.315 ...th=1.0\linewidth]{images/placeholder.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[12]
-
-LaTeX Warning: File `images/placeholder.png' not found on input line 352.
-
-
-c:/Users/faruk.SATAN/OneDrive - Constructor University/Desktop/HPC_Project/HPC_Lab_Proj/report/main.tex:352: Package pdftex.def Error: File `images/placeholder.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.352 ...th=1.0\linewidth]{images/placeholder.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: File `images/placeholder.png' not found on input line 375.
-
-
-c:/Users/faruk.SATAN/OneDrive - Constructor University/Desktop/HPC_Project/HPC_Lab_Proj/report/main.tex:375: Package pdftex.def Error: File `images/placeholder.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.375 ...th=1.0\linewidth]{images/placeholder.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: File `images/placeholder.png' not found on input line 389.
-
-
-c:/Users/faruk.SATAN/OneDrive - Constructor University/Desktop/HPC_Project/HPC_Lab_Proj/report/main.tex:389: Package pdftex.def Error: File `images/placeholder.png' not found: using draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.389 ...th=1.0\linewidth]{images/placeholder.png}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[13] [14] [15] [16] (main.bbl) [17] [18] [19] [20] [21] (main.aux)
+[11] [12 <./images/all_conditions_prefetcher_family_comparison_vs_nopf.png>] [13] [14]
+<images/diagnostic_matrix_2x2.png, id=268, 867.24pt x 614.295pt>
+File: images/diagnostic_matrix_2x2.png Graphic file (type png)
+<use images/diagnostic_matrix_2x2.png>
+Package pdftex.def Info: images/diagnostic_matrix_2x2.png  used on input line 447.
+(pdftex.def)             Requested size: 469.75499pt x 332.74542pt.
+ [15] [16 <./images/diagnostic_matrix_2x2.png>] [17] [18] [19] [20] (main.bbl [21]) [22] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  9C7C00BFDC69C00AB560B2EB660A17D2;4065.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 28E96908DD43A76BBDAB9B1F38A8ACE7;2993.
  ) 
 Here is how much of TeX's memory you used:
- 13360 strings out of 467691
- 212017 string characters out of 5412083
- 727597 words of memory out of 5000000
- 42156 multiletter control sequences out of 15000+600000
- 634998 words of font info for 67 fonts, out of 8000000 for 9000
+ 13454 strings out of 467691
+ 214351 string characters out of 5412083
+ 731660 words of memory out of 5000000
+ 42224 multiletter control sequences out of 15000+600000
+ 635008 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,1104b,462s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\faruk.SATAN\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (22 pages, 175603 bytes).
+ 75i,10n,79p,1511b,562s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/faruk.SATAN/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on main.pdf (23 pages, 556751 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 384 PDF objects out of 1000 (max. 8388607)
+ 74 named destinations out of 1000 (max. 500000)
+ 160 words of extra memory for PDF output out of 10000 (max. 10000000)
 

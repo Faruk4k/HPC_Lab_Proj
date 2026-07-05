@@ -1,0 +1,87 @@
+\begin{thebibliography}{10}
+
+\bibitem{mittal-survey-16}
+S.~Mittal, ``A survey of recent prefetching techniques for processor caches,''
+  {\em ACM Comput. Surv.}, vol.~49, pp.~35:1--35:35, Aug. 2016.
+\newblock \url{https://doi.org/10.1145/2907071}.
+
+\bibitem{falsafi-primer}
+B.~Falsafi and T.~F. Wenisch, {\em A Primer on Hardware Prefetching}.
+\newblock Synthesis Lectures on Computer Architecture, Morgan \& Claypool
+  Publishers, 2014.
+\newblock \url{https://ieeexplore.ieee.org/servlet/opac?bknumber=6828870}.
+
+\bibitem{sri-hpca-07}
+S.~Srinath, O.~Mutlu, H.~Kim, and Y.~N. Patt, ``Feedback directed prefetching:
+  Improving the performance and bandwidth-efficiency of hardware prefetchers,''
+  in {\em 2007 IEEE 13th International Symposium on High Performance Computer
+  Architecture}, pp.~63--74, 2007.
+\newblock \url{https://doi.org/10.1109/HPCA.2007.346185}.
+
+\bibitem{binkert-gem5-11}
+N.~Binkert, B.~Beckmann, G.~Black, S.~K. Reinhardt, A.~Saidi, A.~Basu,
+  J.~Hestness, D.~R. Hower, T.~Krishna, S.~Sardashti, R.~Sen, K.~Sewell,
+  M.~Shoaib, N.~Vaish, M.~D. Hill, and D.~A. Wood, ``The gem5 simulator,'' {\em
+  SIGARCH Comput. Archit. News}, vol.~39, pp.~1--7, Aug. 2011.
+\newblock \url{https://doi.org/10.1145/2024716.2024718}.
+
+\bibitem{ishii-jilp-11}
+Y.~Ishii, M.~Inaba, and K.~Hiraki, ``Access map pattern matching for high
+  performance data cache prefetch,'' {\em Journal of Instruction-Level
+  Parallelism}, vol.~13, 2011.
+\newblock \url{https://jilp.org/vol13/v13paper3.pdf}.
+
+\bibitem{yu-micro-15}
+X.~Yu, C.~J. Hughes, N.~Satish, and S.~Devadas, ``{IMP}: indirect memory
+  prefetcher,'' in {\em Proceedings of the 48th International Symposium on
+  Microarchitecture}, MICRO-48, (New York, NY, USA), pp.~178--190, Association
+  for Computing Machinery, 2015.
+\newblock \url{https://doi.org/10.1145/2830772.2830807}.
+
+\bibitem{smith-cache-82}
+A.~J. Smith, ``Cache memories,'' {\em ACM Comput. Surv.}, vol.~14,
+  pp.~473--530, Sept. 1982.
+\newblock \url{https://doi.org/10.1145/356887.356892}.
+
+\bibitem{chen-baer-95}
+T.-F. Chen and J.-L. Baer, ``Effective hardware-based data prefetching for
+  high-performance processors,'' {\em IEEE Transactions on Computers}, vol.~44,
+  no.~5, pp.~609--623, 1995.
+\newblock \url{https://doi.org/10.1109/12.381947}.
+
+\bibitem{fzj-hybrid-pf}
+B.~Saglam, N.~Ho, C.~Falquez, A.~Portero, F.~Sch\"{a}tzle, E.~Suarez, and
+  D.~Pleiter, ``Data prefetching on processors with heterogeneous memory,'' in
+  {\em Proceedings of the International Symposium on Memory Systems}, MEMSYS
+  '24, (New York, NY, USA), pp.~45--60, Association for Computing Machinery,
+  2024.
+\newblock \url{https://doi.org/10.1145/3695794.3695800}.
+
+\bibitem{arm-hpc-pf-25}
+N.~Ho, C.~Falquez, A.~Portero, E.~Suarez, and D.~Pleiter, ``Memory prefetching
+  evaluation of scientific applications on a modern {HPC} {Arm}-based
+  processor,'' {\em IEEE Access}, vol.~13, pp.~85898--85926, 2025.
+\newblock \url{https://doi.org/10.1109/ACCESS.2025.3569533}.
+
+\bibitem{lowepower-gem5-20}
+J.~Lowe-Power {\em et~al.}, ``The gem5 simulator: Version 20.0+,'' 2020.
+\newblock arXiv:2007.03152. \url{https://arxiv.org/abs/2007.03152}.
+
+\bibitem{nowatzki-microbench}
+T.~Nowatzki, ``{CS 251A} microbenchmarks.''
+\newblock Course microbenchmark collection, {UCLA} {PolyArch} group.
+  \url{https://github.com/PolyArch/cs251a-microbench}.
+
+\bibitem{jlp-gem5-assignment}
+J.~Lowe-Power, ``gem5 course assignments, computer architecture course at {UC}
+  {Davis}.''
+\newblock \url{https://github.com/jlpteaching/gem5-assignment3-wq25}.
+
+\bibitem{McCalpin2007}
+J.~D. McCalpin, ``{STREAM}: Sustainable memory bandwidth in high performance
+  computers,'' tech. rep., University of Virginia, Charlottesville, Virginia,
+  1991-2007.
+\newblock A continually updated technical report.
+  \url{http://www.cs.virginia.edu/stream/}.
+
+\end{thebibliography}

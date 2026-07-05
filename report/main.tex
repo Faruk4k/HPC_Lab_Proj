@@ -11,10 +11,17 @@
 \usepackage{threeparttable}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{geometry} 
+\usepackage{geometry}
 \usepackage{titling}
-\usepackage{lipsum}		
-\geometry{a4paper}              
+\usepackage{lipsum}
+\usepackage{placeins}
+
+% Discourage half-empty dedicated float pages and let figures share pages with text
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.07}
+\geometry{a4paper}
 
 \input{page_margin}
 \begin{document}
@@ -27,413 +34,471 @@
 \listoffigures
 \newpage
 
-\begin{abstract}
-Hardware prefetching is an important technique for reducing the performance impact of long memory access latencies in modern processors. This project evaluates several hardware data prefetchers for scientific and memory-intensive benchmark kernels on a simulated out-of-order Armv8 architecture using gem5. The main focus is on the Access Map Pattern Matching (AMPM) prefetcher and the Indirect Memory Prefetcher (IMP), which are compared against simpler Next-line and Stride prefetchers. The evaluation considers prefetchers placed at both the L1 data cache and the shared L2 cache, using two DDR4 memory configurations. Several benchmark kernels are studied, including STREAM Triad, sparse matrix-vector multiplication, matrix multiplication, merge sort, quick sort, and breadth-first search.
 
-The report describes the simulated architecture, benchmark selection, prefetcher configurations, and evaluation metrics. The experimental analysis focuses on speedup, prefetch accuracy, coverage, timely and late prefetches, unused prefetches, and cache miss behavior. The goal is to understand when more complex prefetchers such as AMPM and IMP provide benefits over simpler spatial prefetchers, and how prefetcher behavior changes depending on benchmark access patterns, cache placement, and memory bandwidth.
+\begin{abstract}
+Hardware prefetching is an important technique for reducing the performance impact of long memory access latencies in modern processors. Here we evaluate several hardware data prefetchers for scientific and memory-intensive benchmark kernels on a simulated out-of-order Armv8 architecture using gem5. The main focus is on the Access Map Pattern Matching (AMPM) prefetcher and the Indirect Memory Prefetcher (IMP), which are compared against the more fundamental Next-line and Stride prefetchers. The evaluation considers prefetchers placed at both the L1 data cache and the shared L2 cache, using two DDR4 memory configurations. The studied benchmarks include STREAM Triad, sparse matrix-vector multiplication, matrix multiplication, merge sort, quick sort, and breadth-first search.
+
+The report describes the simulated architecture, benchmark selection, prefetcher configurations, and evaluation metrics. The goal is to determine which memory-access patterns favor AMPM, IMP, Next-line, and Stride, and to explain the observed speedups using prefetch accuracy, coverage, late and unused prefetches, cache placement, and memory bandwidth.
 \end{abstract}
+
 
 \newpage
 
 \section{Introduction}
 \label{sec:intr}
 
-Memory performance is a major bottleneck in many high-performance computing (HPC) applications. While modern processors continue to increase core counts, instruction throughput, and vector capabilities, memory latency and bandwidth often improve more slowly. As a result, applications with large working sets or irregular memory accesses may spend a significant fraction of execution time waiting for data to arrive from the memory hierarchy.
+Memory performance is a major bottleneck in many high-performance computing (HPC) applications. While modern processors continue to increase core counts, instruction throughput, and vector capabilities, memory latency and bandwidth improve more slowly \cite{mittal-survey-16}. As a result, applications with large working sets or irregular memory accesses may spend a significant fraction of execution time waiting for data to arrive from the memory hierarchy. As such, hardware prefetching is one technique used to reduce this bottleneck \cite{falsafi-primer}. A prefetcher tries to predict future memory accesses and fetch the corresponding cache lines before they are demanded by the processor. If the prediction is correct and timely, the demand access can hit in the cache instead of stalling on a memory access. However, prefetching can also be harmful if it fetches useless cache lines, consumes memory bandwidth, or evicts useful data from the cache \cite{sri-hpca-07}.
 
-Hardware prefetching is one technique used to reduce this bottleneck. A prefetcher tries to predict future memory accesses and fetch the corresponding cache lines before they are demanded by the processor. If the prediction is correct and timely, the demand access can hit in the cache instead of stalling on a memory access. However, prefetching can also be harmful if it fetches useless cache lines, consumes memory bandwidth, or evicts useful data from the cache.
+\noindent This project studies hardware prefetching for a set of benchmarks using the gem5 simulator \cite{binkert-gem5-11}. The focus is on two more advanced prefetching techniques: Access Map Pattern Matching (AMPM) \cite{ishii-jilp-11} and the Indirect Memory Prefetcher (IMP) \cite{yu-micro-15}. Then, these prefetchers are compared with two simpler baseline prefetchers: Next-line \cite{smith-cache-82} and Stride \cite{chen-baer-95}.
 
-This project studies hardware prefetching for a set of scientific and memory-intensive benchmarks using the gem5 simulator. The focus is on two more advanced prefetching techniques: Access Map Pattern Matching (AMPM) and the Indirect Memory Prefetcher (IMP). AMPM is designed to identify spatial access patterns within memory regions, while IMP targets indirect memory accesses such as indexed references. These prefetchers are compared with two simpler baseline prefetchers: Next-line and Stride.
+\noindent The evaluation is performed on an out-of-order Armv8 architecture model. Prefetchers are evaluated at both the L1 data cache and L2 cache, and for two DDR4 memory configurations. The main goal is to analyze how different prefetchers behave across benchmarks with different memory access patterns, and determine when some prefetchers provide an advantage over others.
 
-The evaluation is performed on an out-of-order Armv8 architecture model. Prefetchers are evaluated at both the L1 data cache and L2 cache, and experiments are repeated for two DDR4 memory configurations. The main goal is to analyze how different prefetchers behave across benchmarks with different memory access patterns, and to determine when complex prefetchers provide an advantage over simpler spatial prefetching mechanisms.
+\noindent The rest of this report is organized as follows. Section~\ref{sec:back} introduces background on memory prefetching and the evaluated prefetchers. Section~\ref{sec:eval} describes the simulation methodology, architecture model, benchmarks, prefetcher configurations, and metrics. Section~\ref{sec:eval:res} presents the evaluation results, including speedup, cache miss behavior, prefetch accuracy, coverage, and timeliness. Finally, Section~\ref{sec:conc} summarizes the main findings.
 
-The rest of this report is organized as follows. Section~\ref{sec:back} introduces background on memory prefetching and the evaluated prefetchers. Section~\ref{sec:eval} describes the simulation methodology, architecture model, benchmarks, prefetcher configurations, and metrics. Section~\ref{sec:eval:res} presents the evaluation results, including speedup, cache miss behavior, prefetch accuracy, coverage, and timeliness. Finally, Section~\ref{sec:conc} summarizes the main findings and lessons learned.
-\noindent
-\lipsum[1]
-\vspace{0.5cm}
-
+\FloatBarrier
 \section{Background \& Related Work}
 \label{sec:back}
 
-Hardware data prefetching attempts to hide memory latency by predicting future data accesses and issuing memory requests before the corresponding load instructions require the data. A successful prefetch should be both accurate and timely: it should fetch a cache line that will actually be used, and it should arrive early enough to reduce or eliminate the demand miss latency.
+% the paragraph below probably not needed as it just says the same thing as intro
+% Hardware data prefetching attempts to hide memory latency by predicting future data accesses and issuing memory requests before the corresponding load instructions require the data. A successful prefetch should be both accurate and timely: it should fetch a cache line that will actually be used, and it should arrive early enough to reduce or eliminate the demand miss latency.
 
-Different prefetchers target different types of memory access patterns. Simple spatial prefetchers, such as Next-line, assume that future accesses are close to the current access. A Next-line prefetcher fetches the following cache line after an access, without requiring complex pattern detection. This can be effective for streaming or sequential access patterns, such as array traversal.
+\noindent Different prefetchers target different types of memory access patterns. Simple spatial prefetchers, such as Next-line, assume that future accesses are close to the current access \cite{smith-cache-82}. A Next-line prefetcher fetches the following cache line after an access, without requiring complex pattern detection. This can be effective for streaming or sequential access patterns, such as array traversal. On the other hand, Stride prefetchers detect constant-distance access patterns \cite{chen-baer-95}. If a sequence of accesses follows a pattern such as consecutive cache lines or a fixed stride, the prefetcher can predict future addresses by adding the detected stride to the current address. Stride prefetching is especially relevant for scientific codes with regular array-based memory access patterns.
 
-Stride prefetchers detect constant-distance access patterns. If a sequence of accesses follows a pattern such as consecutive cache lines or a fixed stride, the prefetcher can predict future addresses by adding the detected stride to the current address. Stride prefetching is especially relevant for scientific codes with regular array-based memory access patterns.
+\noindent Access Map Pattern Matching (AMPM), as proposed by Ishii et al. \cite{ishii-jilp-11}, is a more sophisticated spatial prefetcher that extends the ideas behind simple Next-line and Stride prefetching. Instead of predicting only the next cache line or assuming a single constant stride, AMPM divides memory into regions and maintains an access map that records which cache lines within each region have recently been accessed, and by examining these access maps, the prefetcher searches for recurring spatial patterns and predicts future accesses based on previously observed relationships between cache lines. This enables AMPM to identify multiple access streams simultaneously, even when they exhibit different strides or are interleaved within the same memory region. Compared to Next-line prefetching, which only exploits immediate spatial locality, and Stride prefetching, which is limited to regular constant-distance accesses, AMPM can capture a much wider range of spatial access patterns while remaining effective for regular workloads. While this flexibility does add complexity given that the access maps must be continuously maintained and searched for matching patterns, it is comparable to that of the ALU, meaning it would not be too detrimental to modern processors \cite{ishii-jilp-11}. 
 
-Access Map Pattern Matching (AMPM) is a more advanced spatial prefetcher. Instead of only tracking one stride per instruction, AMPM records access patterns within memory regions and attempts to identify multiple spatial relationships. This makes it suitable for workloads with interleaved or more complex spatial patterns. In this project, AMPM is evaluated as a representative spatial prefetcher with higher complexity than Next-line and Stride.
+% \noindent The Indirect Memory Prefetcher (IMP), by Yu et al. \cite{yu-micro-15}, is designed for memory access patterns that cannot be predicted from address sequences alone. Indirect accesses occur when the address of one memory operation depends on data loaded by an earlier operation, such as in expressions of the form \texttt{A[B[i]]}. These patterns are common in sparse matrix computations, graph traversal, pointer-based data structures, and other irregular applications. Unlike Next-line, Stride, or AMPM, which all rely on detecting spatial relationships between memory addresses, IMP attempts to learn the dependency between the producer load that generates an address and the subsequent consumer load that dereferences it. By recognizing these producer--consumer relationships, IMP can prefetch the final data before the dependent access is executed, allowing it to accelerate workloads where these indirect memory access patterns occur. However, because IMP must track dependencies between loads rather than only address patterns, it requires more sophisticated hardware structures and prediction mechanisms than traditional spatial prefetchers.
+\noindent The Indirect Memory Prefetcher (IMP), proposed by Yu et al. \cite{yu-micro-15}, targets memory access patterns that cannot be predicted from addresses alone. These indirect accesses, common in sparse matrix computations, graph traversal, and pointer-based data structures, occur when one memory address depends on data loaded by a previous operation (e.g., \texttt{A[B[i]]}). Unlike Next-line, Stride, and AMPM, which exploit spatial address patterns, IMP learns producer--consumer relationships between dependent loads to prefetch the final data before it is accessed. Concretely, IMP detects the sequentially streamed index array $B$ and learns the address-generation rule $ADDR(A[B[i]]) = Coeff \times B[i] + BaseAddr$, where $Coeff$ is the element size of $A$ and $BaseAddr$ its base address; since both are constant for a given pattern, index values streamed ahead can be used to compute the irregular data addresses before the program accesses them. In hardware, a prefetch table tracks the index streams and an indirect pattern detector learns $Coeff$ and $BaseAddr$ by correlating candidate index values with subsequent cache misses; restricting $Coeff$ to powers of two reduces the address computation to a shift and an addition \cite{yu-micro-15}.
 
-The Indirect Memory Prefetcher (IMP) targets indirect memory access patterns. These patterns occur when one memory access provides an index or pointer used by a later memory access. A common example is an access of the form \texttt{A[B[i]]}. Such patterns appear in sparse matrix computations, graph algorithms, and other irregular workloads. Unlike simple spatial prefetchers, IMP is intended to capture dependence-based memory behavior rather than only fixed address distances.
+% \noindent The evaluated benchmark set includes both regular and irregular memory access behavior. STREAM Triad and matrix multiplication contain more regular array-based accesses. Sparse matrix-vector multiplication and breadth-first search include indirect or irregular components, although their concrete implementations may still expose spatial locality through compressed or contiguous data structures. Merge sort and quick sort provide additional memory-intensive workloads with different access and control-flow behavior.
 
-The evaluated benchmark set includes both regular and irregular memory access behavior. STREAM Triad and matrix multiplication contain more regular array-based accesses. Sparse matrix-vector multiplication and breadth-first search include indirect or irregular components, although their concrete implementations may still expose spatial locality through compressed or contiguous data structures. Merge sort and quick sort provide additional memory-intensive workloads with different access and control-flow behavior.
+% \noindent Prior work on hardware prefetching has shown that no single prefetcher performs best across all memory access patterns. Hybrid prefetching approaches attempt to combine multiple prediction mechanisms to exploit the strengths of different prefetchers while mitigating their individual weaknesses, demonstrating that different workloads often benefit from different prediction strategies rather than a single universal design \cite{fzj-hybrid-pf}. More recently, evaluations of scientific workloads on modern Arm-based HPC processors have shown that benchmark memory access characteristics strongly influence prefetcher effectiveness. By analyzing access patterns before evaluating different prefetchers, these studies demonstrate that kernels with dominant spatial access patterns benefit from spatial address-correlation prefetchers, while the optimal degree of prefetch aggressiveness depends on both the application and the available memory bandwidth \cite{arm-hpc-pf-25}. Motivated by these observations, this project evaluates Next-line, Stride, AMPM, and IMP across a diverse set of benchmarks exhibiting both regular and irregular memory access behavior. In addition to execution speedup, the evaluation considers prefetch accuracy, coverage, timeliness, unused prefetches, and cache miss behavior in order to provide a more comprehensive assessment of each prefetcher's effectiveness.
+\noindent Prior research has shown that no single hardware prefetcher configuration performs best in all situations \cite{mittal-survey-16}. For example, on systems with heterogeneous memory, prefetchers benefit from dynamically adapting their aggressiveness (degree and distance) to the bandwidth of the memory being accessed, prefetching aggressively while bandwidth is available and more conservatively as it saturates \cite{fzj-hybrid-pf}. Studies on modern Arm-based HPC processors have demonstrated that prefetcher effectiveness depends strongly on workload memory access characteristics and available memory bandwidth, where in particular, applications with regular spatial access patterns benefit most from spatial prefetchers, while the optimal level of prefetch aggressiveness is workload-dependent \cite{arm-hpc-pf-25}. Motivated by these findings, this project evaluates Next-line, Stride, AMPM, and IMP across a diverse benchmark suite with both regular and irregular memory access patterns. Beyond execution speedup, the evaluation considers prefetch accuracy, coverage, timeliness, unused prefetches, and cache miss behavior to provide a comprehensive assessment of prefetcher effectiveness.
 
-Prior work on hardware prefetching has shown that no single prefetcher is optimal for all access patterns. Aggressive prefetchers may improve performance by increasing memory-level parallelism, but they can also reduce accuracy and increase memory traffic. Therefore, this project evaluates not only speedup, but also prefetch accuracy, coverage, timeliness, unused prefetches, and cache miss behavior.
-\noindent
-\textbf{Example of citing a related work:} Santhosh et al. described a technique to dynamically adapt prefetch aggressiveness at runtime~\cite{sri-hpca-07}.
+% \textbf{Example of citing a related work:} Santhosh et al. described a technique to dynamically adapt prefetch aggressiveness at runtime~\cite{sri-hpca-07}.
 
-\noindent
-\lipsum[2]
-\vspace{0.5cm}
-
+\FloatBarrier
 \section{Evaluation Methodology}
 \label{sec:eval}
 
-This section describes the simulation setup used to evaluate the hardware prefetchers. The evaluation uses gem5 to simulate an out-of-order Armv8 system. The experiments compare AMPM and IMP against Next-line and Stride prefetchers across several benchmark kernels, cache placements, and memory configurations.
+All experiments use gem5~\cite{binkert-gem5-11,lowepower-gem5-20} in syscall-emulation (SE) mode to simulate a single-core out-of-order Armv8 system. Every benchmark binary is instrumented with \texttt{m5} operations (\texttt{m5\_reset\_stats} / \texttt{m5\_dump\_stats}) around the computational kernel, so all reported statistics cover only the region of interest and exclude initialization and data-generation code. The experiments were organized with gem5's \texttt{multisim} framework, which allowed batches of configurations to be executed in parallel. In total, the final dataset contains more than 3{,}000 simulation runs: 12 no-prefetch baseline runs, 144 Next-line runs, 624 Stride runs, roughly 1{,}400 IMP runs collected over three tuning stages, and roughly 1{,}000 AMPM runs collected over two tuning stages.
 
 \subsection{Architecture Model}
 \label{sec:eval:arch}
 
-The simulated system uses an out-of-order Armv8 CPU model. The core is configured with a 4-wide pipeline, a reorder buffer, physical integer and floating-point/vector registers, and a load-store queue. This setup allows memory operations to be reordered dynamically, which is important for realistic prefetcher evaluation because out-of-order execution can interleave memory streams and make access patterns more difficult to detect.
+% The simulated system uses gem5's \texttt{ArmO3CPU} out-of-order model, configured similarly to a big out-of-order core (in the style of \texttt{ex5\_big}). The core is 4-wide in all pipeline stages (fetch, decode, rename, dispatch, issue, writeback, and commit), with a 128-entry reorder buffer, 160 physical integer and 160 physical floating-point/vector registers, and a 64-entry load queue plus a 64-entry store queue. Branch prediction uses a tournament predictor. The functional unit pool contains 6 integer ALUs, 2 integer multiply/divide units, 4 FP ALUs, 2 FP multiply/divide units, 4 SIMD units, and 4 read and 4 write memory ports. This aggressive out-of-order configuration is important for prefetcher evaluation because dynamic scheduling interleaves memory streams and makes access patterns harder to detect, while also allowing the core to exploit memory-level parallelism created by prefetching.
 
-The cache hierarchy consists of private L1 instruction and data caches and a shared L2 cache. The L1 data cache and L2 cache are both evaluated as possible prefetcher insertion points. For each prefetcher family, experiments are performed with the prefetcher attached either to the L1 data cache or to the L2 cache, while the other cache level does not use that prefetcher.
+% The cache hierarchy consists of private L1 instruction and data caches and a shared, mostly-inclusive L2 cache connected over an L2 crossbar. The L1 data cache is deliberately small (16\,KiB) so that the benchmark working sets do not fit in L1 and the memory system is actually stressed. Prefetchers are attached either to the L1 data cache or to the L2 cache; the other level runs without a prefetcher in that experiment.
 
-Two DDR4 memory configurations are evaluated. The first configuration represents the baseline DDR4 memory setup, while the second configuration increases available memory bandwidth. These two memory configurations are used to study how prefetcher effectiveness changes when more memory bandwidth is available. This is important because aggressive prefetching can generate additional memory traffic, and its benefit may depend on whether the memory system can absorb this traffic.
+% Two DDR4 memory configurations are evaluated: a single-channel DDR4-2400 configuration (\texttt{DDR4\_1x}) and a dual-channel configuration with doubled bandwidth (\texttt{DDR4\_2x}). Both use 128-byte channel interleaving and 1\,GiB capacity. These two memory systems are used to study whether prefetcher effectiveness is bandwidth-sensitive: aggressive prefetching creates extra memory traffic, and its benefit depends on whether the memory system can absorb this traffic. Table~\ref{tab:architecture} summarizes the architecture parameters.
 
-\begin{table}[h]
+\begin{table}[tbp]
 \caption{Simulated architecture parameters.}
 \centering
-\begin{tabular}{|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|l}
 \hline
-Component & Configuration \\ \hline
-ISA & Armv8 \\ \hline
-CPU model & Out-of-order core \\ \hline
-Pipeline width & Placeholder \\ \hline
-ROB size & Placeholder \\ \hline
-Integer registers & Placeholder \\ \hline
-FP/vector registers & Placeholder \\ \hline
-Load-store queue size & Placeholder \\ \hline
-L1 data cache & Placeholder \\ \hline
-L2 cache & Placeholder \\ \hline
-Memory configurations & DDR4 1x and DDR4 2x \\ \hline
-Simulator & gem5 \\ \hline
-\end{tabular}
+\textbf{Component} & \textbf{Configuration} \\ \hline
+ISA & Armv8 (AArch64) \\
+CPU model & gem5 \texttt{ArmO3CPU}, single core, 3\,GHz \\ 
+Pipeline width & 4 (fetch/decode/rename/dispatch/issue/writeback/commit) \\ 
+ROB size & 128 entries \\ 
+Physical integer registers & 160 \\ 
+Physical FP/vector registers & 160 \\
+Load/store queue & 64 load entries + 64 store entries \\ 
+Branch predictor & TournamentBP \\ 
+Functional units & 6 IntALU, 2 IntMultDiv, 4 FP ALU, 2 FP MultDiv, 4 SIMD \\
+L1I cache & 16\,KiB, 8-way, 1-cycle latency \\
+L1D cache & 16\,KiB, 8-way, 1-cycle latency, 16 MSHRs, 64\,B lines \\
+L2 cache & 256\,KiB shared, 16-way, 10-cycle latency, 20 MSHRs \\
+Memory (1x) & DDR4-2400, 1 channel, 1\,GiB \\
+Memory (2x) & DDR4-2400, 2 channels, 1\,GiB \\
+Simulator & gem5, SE mode, \texttt{multisim} batch runs \\ \hline
+\end{tabular}}
 \label{tab:architecture}
 \end{table}
+
+The simulated system uses gem5's \texttt{ArmO3CPU}, configured as a modern out-of-order processor, as summarized in Table~\ref{tab:architecture}. This aggressive out-of-order design is well suited for evaluating hardware prefetchers, as dynamic scheduling interleaves memory streams and exposes memory-level parallelism that prefetching can exploit.
+
+\noindent The cache hierarchy consists of private L1 instruction and data caches and a shared L2 cache. The relatively small L1 data cache is intentionally chosen to ensure that benchmark working sets generate sufficient cache misses to stress the memory hierarchy. In each experiment, the evaluated prefetcher is attached either to the L1 data cache or the L2 cache, while the other cache level operates without a prefetcher.
+
+\noindent Two DDR4-2400 memory configurations are evaluated: a single-channel configuration and a dual-channel configuration with twice the available bandwidth. Since aggressive prefetching increases memory traffic, comparing these configurations reveals how available bandwidth influences prefetcher effectiveness.
 
 \subsection{Evaluated Prefetchers}
 \label{sec:eval:prefetchers}
 
-Four prefetcher families are evaluated: Next-line, Stride, AMPM, and IMP. Next-line and Stride are used as simpler reference prefetchers. AMPM and IMP are the main focus of the project.
-
-The Next-line prefetcher represents a simple spatial prefetching strategy. It assumes that future memory accesses are likely to continue to the next cache line. This prefetcher has low complexity and can be effective for streaming memory accesses.
-
-The Stride prefetcher detects regular address differences between memory accesses. Once a stable stride is detected, it issues prefetch requests for future addresses following the same stride. This prefetcher is expected to perform well for regular array-based access patterns.
-
-AMPM tracks accesses within memory regions and attempts to identify spatial patterns from the observed access map. Compared with Next-line and Stride, AMPM can potentially detect more complex spatial patterns and multiple interleaved streams.
-
-IMP targets indirect memory access patterns, where one loaded value is used to compute the address of a later memory access. This makes IMP relevant for sparse and graph-based workloads, where indexed memory references are common.
-
-For each prefetcher, both default and tuned configurations are considered where applicable. The tuned configurations vary relevant prefetcher parameters such as prefetch degree, distance, thresholds, table sizes, and other prefetcher-specific parameters. The final comparison reports both default behavior and the best-performing tuned configuration.
+% also probably not needed, as we say this a few times before
+% Four prefetcher families are evaluated: Next-line, Stride, AMPM, and IMP. Next-line and Stride are used as simpler reference prefetchers, with AMPM and IMP being the main focus of the project.
 
 \begin{table}[h]
-\caption{Evaluated prefetcher families.}
+\caption{Next-line configuration parameters.}
 \centering
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{l|l}
 \hline
-Prefetcher & Main target pattern & Configuration exploration \\ \hline
-Next-line & Sequential/spatial accesses & Default and tuned parameters \\ \hline
-Stride & Constant-stride accesses & Default and tuned parameters \\ \hline
-AMPM & Spatial access-map patterns & Placeholder for explored parameters \\ \hline
-IMP & Indirect memory accesses & Placeholder for explored parameters \\ \hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+degree & \{1, 2 (default), 4, 8, 16, 32\} \\ \hline
 \end{tabular}
-\label{tab:prefetchers}
+\label{tab:nextlineparams}
 \end{table}
 
+\noindent The Next-line prefetcher (gem5 \texttt{TaggedPrefetcher}) represents a simple spatial prefetching strategy. It assumes that future memory accesses are likely to continue to the next cache line. This prefetcher has low complexity and can be effective for streaming memory accesses. For this prefetcher, the explored parameter and swept values can be found in Table ~\ref{tab:nextlineparams}.
+
+\begin{table}[h]
+\caption{Stride configuration parameters.}
+\centering
+\begin{tabular}{l|l}
+\hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+degree & \{1, 4 (default), 8, 16, 32\} \\
+distance & \{0 (default), 1, 4, 8, 16, 32\} \\ \hline
+\end{tabular}
+\label{tab:strideparams}
+\end{table}
+
+\noindent The Stride prefetcher (gem5 \texttt{StridePrefetcher}) detects regular per-PC address differences between memory accesses. Once a stable stride is detected, it issues prefetch requests for future addresses following the same stride. This prefetcher is expected to perform well for regular array-based access patterns. As for Stride, the exploration is a full cross product of degree and distance. Table ~\ref{tab:strideparams}.
+
+\begin{table}[h]
+\caption{AMPM configuration parameters: Stage 1.}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|l}
+\hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+limit\_stride & \{0 (default), 2, 4, 8, 16, 32, 64\} \\
+start\_degree & \{1, 2, 4 (default), 8, 16, 32, 64\} \\
+hot\_zone\_size/access\_map\_table\_entries (L2) &
+\{64B/4096, 128B/2048, 256B/1024, 512B/512, \\
+& 1KiB/256, 2KiB/128, 4KiB/64, 8KiB/32\} \\
+hot\_zone\_size/access\_map\_table\_entries (L1D) &
+\{64B/256, 128B/128, 256B/64, 512B/32, \\
+& 1KiB/16, 2KiB/8, 4KiB/4, 8KiB/2\} \\
+access\_map\_table\_assoc & \{1, 2, 4, 8 (default), 16, 32, 64\} \\
+epoch\_cycles & \{64\,000, 128\,000, 256\,000 (default), 512\,000, 1\,024\,000\} \\ \hline
+\end{tabular}}
+\label{tab:ampmparamsstage1}
+\end{table}
+
+\begin{table}[h]
+\caption{AMPM configuration parameters: Stage 2.}
+\centering
+\begin{tabular}{l|l}
+\hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+limit\_stride & \{8, 16\} (L1D); \{8\} (L2) \\
+start\_degree & \{8, 16\} \\
+hot\_zone\_size/access\_map\_table\_entries (L2) &
+\{512B/512, 1KiB/256\} \\
+hot\_zone\_size/access\_map\_table\_entries (L1D) &
+\{1KiB/16\} \\
+access\_map\_table\_assoc & \{4\} (L1D); \{4, 16\} (L2) \\
+epoch\_cycles & \{128\,000, 1\,024\,000\} \\ \hline
+\end{tabular}
+\label{tab:ampmparamsstage2}
+\end{table}
+
+\noindent AMPM tracks accesses within memory regions (hot zones) and attempts to identify spatial patterns from the observed access map. AMPM was tuned in two stages. Stage~1 (Table~\ref{tab:ampmparamsstage1}) swept one parameter at a time around the gem5 default. Because the hot-zone size and the number of access-map-table entries jointly determine the memory range covered by the access maps, these two parameters were varied together (entries scaled inversely to the zone size), with separate organizations for L1D and L2 placement so as to fit in each of them, as also done in \cite{ishii-jilp-11}. Stage~2 (Table~\ref{tab:ampmparamsstage2}) combined the strongest Stage-1 values into cross-product configurations.
+
+\begin{table}[h]
+\caption{IMP configuration parameters: Stage 1 (one parameter varied at a time).}
+\centering
+\begin{tabular}{l|l}
+\hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+max\_prefetch\_distance & \{4, 8, 16 (default), 32, 64\} \\
+prefetch\_threshold & \{1, 2 (default), 3, 4\} \\
+streaming\_distance & \{2, 4 (default), 8, 16\} \\
+stream\_counter\_threshold & \{2, 4 (default), 8\} \\
+pt\_table\_entries (prefetch table) & \{8, 16 (default), 32, 64\} \\
+ipd\_table\_entries (indirect pattern detector) & \{2, 4 (default), 8, 16\} \\
+addr\_array\_len (tracked miss addresses) & \{2, 4 (default), 8, 16\} \\ \hline
+\end{tabular}
+\label{tab:impparamsstage1}
+\end{table}
+
+\begin{table}[h]
+\caption{IMP configuration parameters: Stages 2 and 3 (combined configurations).}
+\centering
+\begin{tabular}{l|l}
+\hline
+\textbf{Parameter} & \textbf{Values} \\ \hline
+streaming\_distance (Stage 2) & \{2, 8, 16\} \\
+streaming\_distance (Stage 3) & \{32, 64\} \\
+\quad combined with: & \\
+stream\_counter\_threshold & \{2, 8\} \\
+max\_prefetch\_distance & \{8, 32\} \\
+pt\_table\_entries & \{8, 32\} \\
+ipd\_table\_entries & \{8, 16\} \\
+addr\_array\_len & \{8, 16\} \\ \hline
+\end{tabular}
+\label{tab:impparamsstage2and3}
+\end{table}
+
+% This makes IMP relevant for sparse and graph-based workloads, where indexed memory references are common. 
+\noindent IMP targets indirect memory access patterns, where one loaded value is used to compute the address of a later memory access. The gem5 implementation pairs a stream detector with an indirect pattern detector (IPD) that learns \texttt{A[B[i]]}-style relations between an index load and the resulting indirect access; because the prefetcher must inspect the accessed data to learn these index-to-address relations, it is notified only on demand read misses in all runs (not on writes, instruction fetches, or prefetch hits). IMP was tuned in three stages. Stage~1 (Table~\ref{tab:impparamsstage1}) swept each parameter individually around the gem5 default; the table associativities were adjusted together with the table capacities.
+
+\noindent Stages~2 and~3 (Table~\ref{tab:impparamsstage2and3}) combined the per-parameter winners into multi-parameter configurations built around the streaming distance, which Stage~1 identified as the most influential parameter. Stage~2 explored 27 combinations at streaming distances $\{2, 8, 16\}$, including deliberately aggressive (e.g., \texttt{aggr\_s16\_sth2\_d32\_ipd16\_addr16}) and conservative (e.g., \texttt{cons\_s2\_sth8\_pt8}) anchor configurations. Since the most aggressive streaming settings kept winning, Stage~3 re-ran the 13 best combination templates at streaming distances $\{32, 64\}$ (26 configurations, e.g., \texttt{s32\_sth2\_dist32\_ipd16\_addr16}), giving 75 distinct IMP configurations in total.
+
+\noindent For each prefetcher, both default and tuned configurations are considered. The tuned configurations vary relevant prefetcher parameters such as prefetch degree, distance, thresholds, table sizes, and other prefetcher-specific parameters. The final comparison reports both default behavior and the best-performing tuned configuration.
+
+% \newpage
 \subsection{Benchmarks}
 \label{sec:eval:benchmarks}
 
-The evaluation uses six benchmark kernels with different memory access characteristics. The benchmark set includes regular streaming behavior, dense computation, sparse computation, sorting, and graph traversal. This allows the prefetchers to be evaluated across a range of access patterns.
+The evaluation uses six benchmark kernels with different memory access characteristics, displayed in Table~\ref{tab:bench}. These benchmarks cover regular streaming, dense compute with cache reuse, sparse indirect computation, sorting, and graph traversal, so the prefetchers are evaluated across a range of access patterns. The kernels are adapted from the microbenchmark set of Nowatzki's computer-architecture course \cite{nowatzki-microbench} and, for BFS, from Lowe-Power's gem5 course assignments \cite{jlp-gem5-assignment}; STREAM Triad is derived from McCalpin's STREAM benchmark \cite{McCalpin2007}.
 
-\begin{table}[h]
-\caption{Benchmark selection.}
+\begin{table}[tbp]
+\caption{Benchmark selection and problem sizes.}
 \centering
-\begin{tabular}{|l|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|l|l}
 \hline
-Benchmark & Description & Expected memory behavior \\ \hline
-STREAM Triad & Vector streaming benchmark & Regular sequential accesses \\ \hline
-SpMV & Sparse matrix-vector multiplication & Sparse and indirect accesses \\ \hline
-Matrix multiplication & Dense matrix computation & Regular array accesses \\ \hline
-Merge sort & Sorting benchmark & Data-dependent memory behavior \\ \hline
-Quick sort & Sorting benchmark & Data-dependent memory behavior \\ \hline
-BFS & Breadth-first search graph traversal & Graph/indirect accesses with adjacency-array streaming \\ \hline
-\end{tabular}
+\textbf{Benchmark} & \textbf{Problem size} & \textbf{Expected memory behavior} \\ \hline
+STREAM Triad \cite{McCalpin2007} & $10^6$ doubles per array (3 arrays, $\sim$24\,MB) & Regular streaming, bandwidth-bound \\
+SpMV (CSR) & $8192 \times 65536$, 524{,}155 non-zeros & Streaming CSR arrays + indirect \texttt{vec[cols[j]]} \\ 
+Matrix mult. & $128 \times 128$, blocked & Regular accesses with strong cache reuse \\ 
+Merge sort & 131{,}072 random integers & Sequential merging of sub-arrays \\ 
+Quick sort & 131{,}072 random integers & Partition scans, data-dependent branches \\ 
+BFS (CSR graph) & 173{,}984 nodes, 3{,}939{,}240 edges & Sequential edge scans + indirect visited accesses \\ \hline
+\end{tabular}}
 \label{tab:bench}
 \end{table}
 
-Although BFS is algorithmically irregular, the implementation used in this project stores graph data in a compact adjacency-array format. Therefore, part of its execution scans the edge array sequentially. This means that BFS can expose both irregular accesses and spatially predictable memory streams. This is relevant when interpreting the performance of IMP compared with Next-line and Stride.
+\noindent Although BFS is algorithmically irregular, the implementation used in this project stores graph data in a compact adjacency-array (CSR) format. Therefore, part of its execution scans the edge array sequentially. This means that BFS can expose both irregular accesses and spatially predictable memory streams, which is relevant when interpreting the performance of IMP compared with Next-line and Stride. Similarly, SpMV mixes fully regular streaming over the \texttt{val}, \texttt{cols}, and \texttt{rowDelim} arrays with the indirect gather \texttt{vec[cols[j]]}.
+
+\noindent The no-prefetch baseline characterization already separates the benchmarks into two groups. STREAM Triad, SpMV, and BFS are strongly memory-bound, with baseline IPCs of only 0.40, 0.36, and 0.37 and mean load-to-use latencies of 208, 131, and 88 cycles, respectively. Matrix multiplication (IPC 1.93), merge sort (IPC 1.09), and quick sort (IPC 0.84) are much less memory-latency-bound, with mean load-to-use latencies below 30 cycles. This bound on the achievable benefit is important context for all later results.
 
 \subsection{Experimental Design}
 \label{sec:eval:design}
 
-Each benchmark is simulated under multiple prefetcher configurations. The experiments vary the prefetcher family, prefetcher configuration, cache placement, and memory configuration. A no-prefetch baseline is also simulated for each benchmark and memory configuration.
+Each benchmark is simulated under multiple prefetcher configurations. The experiments vary the prefetcher family, prefetcher configuration, cache placement, and memory configuration. A no-prefetch baseline is simulated for each benchmark and memory configuration and is the reference point for all speedups.
 
-The primary comparison is speedup relative to the no-prefetch baseline. For each benchmark and system configuration, the best-performing configuration of each prefetcher family is selected. In addition, the default configuration of each prefetcher family is recorded and shown as a reference. This allows the analysis to distinguish between the default behavior of a prefetcher and the improvement obtained through parameter tuning.
+% The full experimental matrix is:
 
-The full experimental matrix is summarized as follows:
+% \begin{itemize}
+%     \item Benchmarks: STREAM Triad, SpMV, matrix multiplication, merge sort, quick sort, BFS.
+%     \item Prefetcher families: Next-line, Stride, AMPM, IMP.
+%     \item Cache placement: L1 data cache or L2 cache (the other level has no prefetcher).
+%     \item Memory configurations: DDR4 1x (one channel) and DDR4 2x (two channels).
+%     \item Baseline: no hardware data prefetching.
+%     \item Evaluation modes: default configuration and swept/tuned configurations per family.
+% \end{itemize}
 
-\begin{itemize}
-    \item Benchmarks: STREAM Triad, SpMV, matrix multiplication, merge sort, quick sort, BFS.
-    \item Prefetcher families: Next-line, Stride, AMPM, IMP.
-    \item Cache placement: L1 data cache and L2 cache.
-    \item Memory configurations: DDR4 1x and DDR4 2x.
-    \item Baseline: no hardware data prefetching.
-    \item Evaluation modes: default prefetcher configuration and tuned configurations.
-\end{itemize}
+\noindent With that in mind, there are 24 evaluation cases (6 benchmarks $\times$ 2 placements $\times$ 2 memories) per family. For each case, the analysis reports both the \emph{default} configuration of each family and the \emph{best tuned} configuration (highest speedup). Comparing the two separates the benefit of the prefetching technique itself from the benefit of parameter tuning. Because plotting every configuration would be unreadable, the metric analysis additionally uses a selection methodology: per benchmark, case, and family, it selects the default configuration, the top-3 configurations by speedup, top-3 by coverage, top-3 by accuracy, lowest-3 by unused-prefetch ratio, and lowest-3 by late-prefetch ratio.
 
 \subsection{Metrics}
 \label{sec:eval:metric}
 
-Several metrics are used to evaluate prefetcher behavior. Speedup measures the overall performance improvement relative to the no-prefetch baseline. Cache miss rates are used to determine whether a prefetcher reduces demand misses. Prefetch accuracy and coverage are used to evaluate how effectively the prefetcher predicts useful memory accesses. Timely, late, and unused prefetches are used to distinguish between useful prefetches that arrive early enough, useful prefetches that arrive too late, and prefetches that are never used.
+Several metric groups are used to evaluate prefetcher behavior, summarized in Table~\ref{tab:metrics}. Speedup measures the overall performance improvement relative to the no-prefetch baseline. Prefetch quality metrics (accuracy, coverage, unused ratio, late ratio) explain whether a prefetcher issues useful, timely requests. Cache metrics show whether demand misses are actually removed. Memory-pressure metrics (prefetcher read traffic, DRAM bandwidth utilization, queue latencies) show whether a prefetcher helps by hiding latency or hurts by overloading the memory system. The mean load-to-use latency connects memory behavior back to what the core experiences.
 
-\begin{table}[h]
+\begin{table}[tbp]
 \caption{Evaluation metrics.}
 \centering
-\begin{tabular}{|l|l|}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|l}
 \hline
-Metric & Description \\ \hline
-Simulation time & Runtime reported by gem5 for the benchmark region \\ \hline
-Speedup & No-prefetch simulation time divided by prefetcher simulation time \\ \hline
-IPC & Instructions per cycle, used to observe core-level performance changes \\ \hline
-Demand misses & Cache misses caused by demand accesses \\ \hline
-Miss rate & Demand misses divided by demand accesses \\ \hline
-Prefetches issued & Number of prefetch requests generated by the prefetcher \\ \hline
-Useful prefetches & Prefetched cache lines that are later used by demand accesses \\ \hline
-Unused prefetches & Prefetched cache lines that are not used before eviction \\ \hline
-Prefetch accuracy & Fraction of issued prefetches that are useful \\ \hline
-Prefetch coverage & Fraction of potential demand misses covered by useful prefetches \\ \hline
-Timely prefetches & Useful prefetches that arrive before the demand access \\ \hline
-Late prefetches & Useful prefetches that arrive too late to fully hide latency \\ \hline
-\end{tabular}
+\textbf{Metric} & \textbf{Description} \\ \hline
+Simulation time & gem5 \texttt{simSeconds} for the benchmark region of interest \\
+Speedup & No-prefetch time divided by prefetcher time (same benchmark/memory) \\ 
+IPC & Instructions per cycle in the region of interest \\ 
+Demand misses / miss rate & Demand misses (absolute, and divided by demand accesses) at L1D and L2 \\ 
+Prefetches issued & Prefetch requests sent to memory by the installed prefetcher \\ 
+Useful prefetches & Prefetched lines later referenced by a demand access \\ 
+Unused prefetches & Prefetched lines evicted without being referenced \\ 
+Prefetch accuracy & useful / issued \\ 
+Prefetch coverage & useful / (useful + demand misses at the installed level) \\ 
+Late prefetches & Prefetches still in flight when the demand access arrives \\ 
+Late ratio & late / issued \\ 
+Unused ratio & unused / issued \\ 
+Prefetcher read traffic & Bytes and bytes/s read from memory by the prefetcher \\ 
+DRAM bandwidth utilization & Total DRAM bandwidth divided by peak bandwidth \\ 
+Load-to-use latency & Mean cycles from load issue to data use, measured at the core \\ \hline
+\end{tabular}}
 \label{tab:metrics}
 \end{table}
 
-The main speedup metric is calculated relative to the no-prefetch baseline:
+\noindent The main speedup metric is calculated relative to the no-prefetch baseline:
 
 \begin{equation}
 \text{Speedup} =
 \frac{T_{\text{no-prefetch}}}{T_{\text{prefetcher}}}
 \end{equation}
 
-where $T_{\text{no-prefetch}}$ is the simulation time without hardware prefetching and $T_{\text{prefetcher}}$ is the simulation time with a given prefetcher configuration.
-
-Prefetch accuracy is calculated as:
+\noindent where $T_{\text{no-prefetch}}$ is the simulated time without hardware prefetching and $T_{\text{prefetcher}}$ is the simulated time with a given prefetcher configuration, always for the same benchmark and memory system. Prefetch accuracy and coverage are calculated as:
 
 \begin{equation}
 \text{Accuracy} =
 \frac{\text{Useful prefetches}}{\text{Issued prefetches}}
-\end{equation}
-
-Prefetch coverage is calculated as:
-
-\begin{equation}
+\qquad
 \text{Coverage} =
 \frac{\text{Useful prefetches}}
 {\text{Useful prefetches} + \text{Demand misses}}
 \end{equation}
 
-These metrics are analyzed together because high speedup does not necessarily imply high accuracy. A prefetcher may improve performance despite lower accuracy if it generates enough timely prefetches and the memory system has sufficient bandwidth. Conversely, a prefetcher may have high accuracy but low speedup if its prefetches arrive too late or if it does not issue enough requests.
+\noindent where the demand misses are counted at the cache level where the prefetcher is installed. For accuracy and coverage, higher is better; for unused ratio, late ratio, miss rates, prefetcher read traffic, DRAM queue latency, and load-to-use latency, lower is better. All plots and ranked tables state the ranking direction explicitly.
 
-\subsection{Architecture model}
-\label{sec:eval:arch}
-\textbf{Describe the simulated CPU architecture.}
-\textbf{Describe also a range of the parameters of the specific hardware components (e.g., prefechers, branch predictor, SVE vector length) if they are used in your evaluation and your exploration}.
+\noindent These metrics must be analyzed together because high speedup does not necessarily imply high accuracy. A prefetcher may improve performance despite low measured accuracy if it generates enough timely or overlapping requests and the memory system has spare bandwidth. Conversely, a prefetcher may have high accuracy but low speedup if its prefetches arrive too late, cover too few misses, or the benchmark is not memory-bound. Several concrete examples of both effects appear in the results.
 
-\noindent
-\textbf{Example of referring to a figure:} Figure~\ref{fig:logo} is an example
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\linewidth]{images/logo.png}
-  \caption{An example.}
-  \label{fig:logo}
-\end{figure}
-
-\subsection{Benchmarks}
-\label{sec:eval:arch}
-\textbf{The evaluation used the benchmark listed in Table ~\ref{tab:bench}.}
-\textbf{For the project focus on the DLP topic, the description of SVE implementation for each specific code should be described in this section too.}
-
-\begin{table}[h]
-\caption{Benchmarks selection.}
-\centering
-\begin{tabular}{|r|c|} 
-\hline
-              & Description           \\ \hline
-Stream-Triad  & Stream benchmark      \\ \hline
-\end{tabular}
-\label{tab:bench}
-\end{table}
-
-\lipsum[3]
-
-\subsection{Metrics}
-\label{sec:eval:metric}
-\textbf{Describe shortly the metrics used in your evaluation, .e.g. as in~Table~\ref{tab:metrics} . }
-\begin{table}[h]
-\caption{Metrics.}
-\centering
-\begin{tabular}{|r|c|} 
-\hline
-              & Description           \\ \hline
-Speedup       &       \\ \hline
-IPC           &  \\ \hline
-prefetch accuracy & \\ \hline
-\end{tabular}
-\label{tab:metrics}
-\end{table}
-
-\lipsum[3]
-
+\FloatBarrier
 \section{Evaluation Results}
 \label{sec:eval:res}
 
-This section presents the experimental results. The analysis is organized in several parts. First, the overall speedup of each prefetcher family is compared against the no-prefetch baseline. Second, default configurations are compared with tuned configurations. Third, cache miss behavior is analyzed. Finally, prefetch accuracy, coverage, timeliness, and unused prefetches are examined to explain the observed speedup trends.
+% This section presents the experimental results. First, the overall speedup of the best configuration of each prefetcher family is compared against the no-prefetch baseline. Second, default configurations are compared with tuned configurations. Third, the effects of cache placement and memory bandwidth are analyzed. Finally, cache miss behavior, prefetch accuracy, coverage, timeliness, and unused prefetches are examined to explain the observed speedup trends, followed by a per-benchmark discussion.
 
 \subsection{Overall Speedup Comparison}
 \label{sec:res:speedup}
 
-Figure~\ref{fig:family-comparison-placeholder} will show the best-performing configuration of each prefetcher family for each benchmark, cache placement, and memory configuration. The no-prefetch baseline is normalized to a speedup of 1.0.
+Figure~\ref{fig:speedupplots} shows, for each of the four placement/memory cases, the best-performing configuration of every prefetcher family on every benchmark, normalized to the no-prefetch baseline (1.0). The red line on each bar marks the default configuration of that family, so the gap between the line and the bar top is the tuning gain. Table~\ref{tab:winners} summarizes the winning family per case.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\linewidth]{images/placeholder.png}
-  \caption{Placeholder: best prefetcher-family comparison against the no-prefetch baseline.}
-  \label{fig:family-comparison-placeholder}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=1.0\linewidth]{images/all_conditions_prefetcher_family_comparison_vs_nopf.png}
+    \caption{Best configuration per prefetcher family vs.\ the no-prefetch baseline, for all benchmarks and all four placement/memory cases. Red lines mark the default configuration of each family.}
+    \label{fig:speedupplots}
 \end{figure}
 
-The expected analysis in this subsection is to compare Next-line, Stride, AMPM, and IMP across all benchmarks. Particular attention should be given to whether AMPM and IMP outperform simpler prefetchers, and whether the winning prefetcher depends on the benchmark memory access pattern.
+\begin{table}[tbp]
+\caption{Winning prefetcher family (best tuned configuration) and speedup per evaluation case.}
+\centering
+\begin{tabular}{l|c|c|c|c}
+\hline
+\textbf{Benchmark} & \textbf{L1D, DDR4 1x} & \textbf{L1D, DDR4 2x} & \textbf{L2, DDR4 1x} & \textbf{L2, DDR4 2x} \\ \hline
+STREAM Triad & Stride (1.18) & AMPM (1.47) & Stride (1.23) & Next-line (1.69) \\ 
+SpMV & IMP (1.78) & IMP (1.69) & IMP (1.77) & IMP (1.71) \\ 
+BFS & Stride (1.34) & Stride (1.35) & Stride (1.29) & Stride (1.31) \\ 
+Merge sort & AMPM (1.19) & AMPM (1.20) & AMPM (1.16) & AMPM (1.17) \\ 
+Quick sort & AMPM (1.18) & Next-line (1.18) & Next-line (1.14) & Next-line (1.13) \\ 
+Matrix mult. & Stride (1.07) & Stride (1.08) & Next-line (1.10) & Next-line (1.12) \\ \hline
+\end{tabular}
+\label{tab:winners}
+\end{table}
 
-For regular streaming benchmarks such as STREAM Triad, simple spatial prefetchers are expected to perform strongly because the access pattern is easy to predict. For sparse and indirect workloads such as SpMV, IMP may have more opportunity to improve performance. BFS requires a more careful interpretation because the implementation contains both irregular graph traversal behavior and sequential scans through the adjacency array.
+\noindent Three main observations follow from the overall comparison.
+
+\noindent First, \emph{no single prefetcher wins everywhere}. In these experiments, the winning prefetcher is strongly associated with the benchmark's dominant observed access pattern. Across the 24 evaluation cases, Stride wins 8 (all four BFS cases plus part of Triad and matmult), AMPM wins 6 (all four merge-sort cases plus two more), Next-line wins 6, and IMP wins 4, but IMP's four wins are all four SpMV cases, the only benchmark whose miss stream is dominated by a true indirect pattern. This matches the design intent of each prefetcher.
+
+\noindent Second, \emph{the differences between families are often small, except where the specialized pattern exists}. On merge sort, quick sort, and matmult, the four families' best configurations lie within a few percent of each other (e.g., quick sort at L1D/DDR4 1x: AMPM 1.183, Next-line 1.183, Stride 1.178, IMP 1.156). In contrast, on SpMV at L2/DDR4 1x, IMP (1.77) beats the best Next-line (1.38) by almost 30 percentage points, and on BFS at L2 IMP (1.09) loses to Stride (1.29) by a similar margin. In this study, the added complexity of AMPM and IMP pays off most clearly when their targeted access pattern is prominent.
+
+\noindent Third, \emph{the magnitude of the achievable speedup tracks how memory-bound the baseline is}. The memory-bound benchmarks SpMV (up to 1.78), Triad (up to 1.69), and BFS (up to 1.35) show the largest gains, while matmult, with a baseline IPC of 1.93 and strong cache reuse, is limited to 1.03--1.12 regardless of prefetcher. Over all 24 cases, the geometric-mean speedups of the best-tuned configurations are remarkably close: Stride 1.27, AMPM 1.25, IMP 1.24, and Next-line 1.24. For the geometric mean over the 24 evaluated cases, tuned Stride is competitive with AMPM and IMP. This suggests that, for this benchmark mix, complex prefetchers provide their clearest benefit on specific matching patterns rather than uniformly across all workloads.
 
 \subsection{Default Versus Tuned Configurations}
 \label{sec:res:defaults}
 
-In addition to comparing the best tuned configurations, the default configuration of each prefetcher is used as a reference. This allows the evaluation to show whether performance improvements come from the basic prefetching technique itself or from parameter tuning.
+The red default-configuration markers in Figure~\ref{fig:speedupplots} and the per-benchmark figures in Section~\ref{sec:res:per-benchmark} allow the tuning benefit to be separated from the technique itself. Table~\ref{tab:tuning} reports the geometric-mean ratio between the best-tuned and the default speedup over the four cases of each benchmark.
 
-The plots in this subsection will show the best tuned configuration as a bar and the default configuration as a marker. This is useful for identifying benchmarks where tuning provides a large benefit and benchmarks where the default configuration is already close to optimal.
+\begin{table}[tbp]
+\caption{Tuning gain: geometric mean of (best tuned speedup / default speedup) over the four placement/memory cases of each benchmark.}
+\centering
+\begin{tabular}{l|c|c|c|c}
+\hline
+\textbf{Benchmark} & \textbf{Next-line} & \textbf{Stride} & \textbf{AMPM} & \textbf{IMP} \\ \hline
+STREAM Triad & 1.105 & 1.065 & 1.041 & 1.132 \\
+SpMV & 1.117 & 1.183 & 1.031 & 1.170 \\ 
+BFS & 1.064 & 1.000 & 1.006 & 1.037 \\ 
+Merge sort & 1.002 & 1.014 & 1.003 & 1.045 \\ 
+Quick sort & 1.009 & 1.000 & 1.010 & 1.043 \\ 
+Matrix mult. & 1.027 & 1.014 & 1.034 & 1.028 \\ \hline
+\end{tabular}
+\label{tab:tuning}
+\end{table}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\linewidth]{images/placeholder.png}
-  \caption{Placeholder: tuned prefetcher performance with default configuration markers.}
-  \label{fig:default-vs-tuned-placeholder}
-\end{figure}
+\noindent Tuning matters most exactly where prefetching matters most. On the memory-bound benchmarks, tuning adds up to 18\% additional speedup (Stride on SpMV: default 1.37 vs.\ tuned 1.62 geometric mean; IMP on SpMV: 1.49 vs.\ 1.74; IMP on Triad: +13\%). The dominant tuned parameter for the simple prefetchers is aggressiveness: the best Triad and SpMV configurations use high degrees/distances (e.g., \texttt{deg16}--\texttt{deg32} Next-line, \texttt{deg32\_dist1} Stride), which keep many more memory requests in flight. For IMP, the multi-parameter Stage-2/3 configurations (e.g., \texttt{s32\_sth2\_dist32\_ipd16\_addr16}: larger streaming distance, lower stream threshold, longer prefetch distance, larger pattern tables) consistently beat every single-parameter Stage-1 variant on SpMV, confirming that IMP's parameters interact and single-parameter tuning is insufficient.
 
-The discussion should identify cases where the default configuration performs close to the best configuration, as well as cases where tuning significantly improves speedup. This is especially important for IMP and AMPM, where parameter choices can strongly affect aggressiveness, coverage, and usefulness.
+\noindent On the sorting benchmarks and BFS, defaults are already close to optimal. Stride gains nothing from tuning on BFS and quick sort (its default wins BFS outright), and AMPM gains under 1\% on BFS, merge, and quick. Interestingly, IMP has the \emph{largest average} tuning gain (geometric mean 1.152 default vs.\ 1.238 tuned over all cases) and the \emph{worst default} behavior of all families; its default configuration is also the only one that produces a slowdown on Triad at L2/DDR4 1x (0.99). AMPM's default is likewise slightly harmful on matmult at L1D (0.97). With tuning, no family loses to the no-prefetch baseline in any of the 24 cases.
 
 \subsection{Effect of Cache Placement}
 \label{sec:res:cache-placement}
 
-This subsection compares prefetching at the L1 data cache with prefetching at the L2 cache. Prefetching at L1D can potentially reduce latency earlier in the hierarchy, but it may also increase pressure on the small L1 cache. Prefetching at L2 has more cache capacity available and may avoid some L1 pollution, but it may be less effective if prefetches arrive too late for the core.
+Comparing L1D against L2 placement for the same benchmark and family shows a consistent, benchmark-dependent split.
 
-The analysis should compare the same benchmark and prefetcher family across L1D and L2 placement. Important questions include:
+\noindent \emph{L1D placement wins for latency-sensitive, irregular benchmarks.} On BFS, merge, quick, and SpMV, the best L1D configurations beat the best L2 configurations for almost every family, typically by 2--10\%. The largest placement effect in the whole study is Next-line on SpMV, which achieves a 1.70 average best speedup at L1D but only 1.39 at L2 (ratio 1.22): at L1D, prefetched lines land next to the core and also cover L1D misses that would otherwise still pay the L1D$\rightarrow$L2 round trip. The results do not show L1D pollution as the dominant limiter for these tuned configurations; either unused ratios remain low, or the displaced lines appear to have limited reuse.
 
-\begin{itemize}
-    \item Does a prefetcher perform better at L1D or L2?
-    \item Does the preferred placement depend on benchmark access pattern?
-    \item Does L2 placement reduce harmful cache pollution?
-    \item Does L1D placement improve timeliness?
-\end{itemize}
+\noindent \emph{L2 placement wins for streaming and reuse-heavy benchmarks.} On Triad, every family is clearly better at L2 (L1D/L2 speedup ratio 0.85--0.91), and on matmult L2 placement is also preferred (0.94--1.00). For Triad, streams touch each line exactly once, so there is no reuse for L1D to protect; prefetching into the larger L2 with 20 MSHRs sustains more outstanding memory requests, which is what a bandwidth-bound stream needs. The clearest evidence is coverage, where on matmult, the same prefetcher families reach 70--86\% coverage at L2 but essentially 0\% at L1D. One likely explanation is that, at L1D, prefetched lines either do not remain resident long enough to be counted as useful or are constrained by request pressure, whereas the larger L2 can retain them longer.
+
+\noindent In these results, placement is more strongly influenced by benchmark behavior than by prefetcher family: irregular/latency-bound codes prefer L1D placement for timeliness, while streaming/bandwidth-bound codes prefer the L2's capacity and request concurrency.
 
 \subsection{Effect of Memory Bandwidth}
 \label{sec:res:memory}
 
-This subsection compares DDR4 1x and DDR4 2x memory configurations. Prefetching can increase memory-level parallelism and hide latency, but aggressive prefetching can also generate additional traffic. Therefore, the effectiveness of a prefetcher may depend on available memory bandwidth.
+Doubling memory channels seems to change prefetcher effectiveness in three distinct ways.
 
-The analysis should identify whether increasing memory bandwidth improves the benefit of aggressive prefetching. This is particularly relevant for memory-intensive benchmarks such as STREAM Triad and SpMV. If a benchmark is bandwidth-limited, higher bandwidth may allow more prefetch requests to be useful. If the memory system is already saturated, additional prefetch traffic may provide limited benefit.
+\noindent\emph{With increased bandwidth, prefetching benefits grow strongly.} On Triad, the best speedup of every family is 1.28--1.34$\times$ higher under DDR4 2x than under 1x (e.g., Next-line at L2 goes from 1.22 to 1.69). Under DDR4 1x the baseline already utilizes about 65\% of DRAM bandwidth and prefetch configurations push it further toward saturation, so prefetching mainly reorders traffic; the average DRAM queue latency stays in the tens of thousands of ticks. Under 2x, the same prefetch streams have headroom, queue latency roughly halves, and aggressive prefetching converts directly into performance. This behavior is consistent with the expected interaction between prefetch aggressiveness and available memory bandwidth \cite{fzj-hybrid-pf}.
+
+\noindent\emph{Prefetching benefit shrinks slightly when workload is more latency-bound.} On SpMV the relative benefit of prefetching is lower under 2x (ratios 0.89--0.98), since the second channel already reduces the baseline's effective latency (baseline time drops from 10.6\,ms to 9.0\,ms), so there is less stall time left for the prefetcher to hide. BFS sits in between (+2--8\%). This shows that ``more bandwidth helps prefetching'' is only true when bandwidth, not latency, is the binding constraint.
+
+\noindent\emph{Compute-bound workloads are insensitive to higher memory bandwidth.} Merge, quick, and matmult change by less than 2\% between memory systems, confirming they do not stress DRAM bandwidth (DRAM utilization is 1--4\% for the sorts and matmult).
 
 \subsection{Cache Miss Rate Analysis}
 \label{sec:res:miss-rate}
 
-Speedup should be interpreted together with cache miss behavior. A prefetcher is expected to improve performance by reducing demand misses, especially at the cache level where it is installed. However, a reduction in miss rate does not always translate directly into speedup, because prefetch timeliness and memory bandwidth also matter.
+% Miss-rate changes explain where the speedups come from --- and expose two cases where miss-rate intuition fails.
 
-This subsection will analyze L1D and L2 demand miss rates for each prefetcher family. The analysis should compare miss rates against the no-prefetch baseline and explain whether the speedup trends match the miss-rate reductions.
+\noindent At the installed level, effective prefetchers strongly reduce demand misses. On quick sort at L1D, all spatial prefetchers reach coverage above 0.85 and drive the L1D miss rate from 2.7\% (baseline region average) down to 0.1--0.2\%; on merge at L1D the best configurations reach 2--5\% L1D miss rate. On SpMV at L2, IMP's indirect prefetches cut the L2 miss rate to about 0.20 while covering 38\% of would-be misses. On BFS, AMPM at L1D reduces the L2 miss rate to 0.28--0.29 versus roughly 0.42 for Stride, but Stride is still faster, because Stride's L1D-level timeliness matters more than AMPM's extra L2-level coverage.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\linewidth]{images/placeholder.png}
-  \caption{Placeholder: L1D and L2 demand miss-rate comparison.}
-  \label{fig:miss-rate-placeholder}
-\end{figure}
+\noindent An interesting observation though, is that prefetchers nearly eliminate L1D demand misses, yet the speedup saturates at about 1.18. The reason is visible in the baseline characterization: quick sort's mean load-to-use latency is only 4.7 cycles, so memory stalls are a minor part of its execution time; the remainder is branch- and dependency-limited sorting work that no prefetcher can accelerate.
 
-Important points to discuss include:
-
-\begin{itemize}
-    \item Which prefetchers reduce demand misses the most?
-    \item Are there cases where miss rate improves but speedup remains small?
-    \item Are there cases where prefetching increases cache traffic or cache pollution?
-    \item Does L1D or L2 placement produce stronger miss-rate reduction?
-\end{itemize}
+\noindent Another is Triad at L1D, where the measured coverage and accuracy are near zero (below 1--2\%), yet speedups of 1.18--1.47 are observed. Here almost every prefetched line is either still in flight when the demand arrives (counted late, not useful) or the demand merges with the in-flight prefetch in the MSHRs. The lines rarely become clean ``useful prefetch'' hits in the small L1D, but the overlap still hides a large part of the DRAM latency. Miss counters alone would suggest these prefetchers do nothing; the speedup and the DRAM-level statistics show otherwise. This is a strong argument for evaluating prefetchers with timeliness and memory-pressure metrics, not only hit/miss statistics.
 
 \subsection{Prefetch Accuracy and Coverage}
 \label{sec:res:accuracy-coverage}
 
-Prefetch accuracy and coverage explain how well a prefetcher predicts useful cache lines. Accuracy measures the fraction of issued prefetches that are later used. Coverage measures how much of the demand-miss stream is covered by useful prefetches.
+Figure~\ref{fig:diagnostics} combines the four diagnostic prefetch-quality metrics into one matrix, showing for each metric only the benchmark and placement/memory case where it is most informative: accuracy for SpMV (a), coverage for quick sort (b), unused-prefetch ratio for BFS (c), and late-prefetch ratio for STREAM Triad (d). Each point is one selected configuration; color encodes the family and the marker shape encodes why the configuration was selected (default, top-3 speedup, top-3 coverage, top-3 accuracy, lowest-3 unused, lowest-3 late). The full per-benchmark versions of these plots, covering all four cases per benchmark and metric, are available as supporting material together with the ranked CSV tables. This subsection discusses panels (a) and (b); Section~\ref{sec:res:timely-late-unused} discusses panels (c) and (d).
 
-A high-accuracy prefetcher is conservative and avoids useless prefetches, but may not issue enough requests to cover many misses. A lower-accuracy prefetcher may still improve performance if it provides high coverage and enough timely prefetches. Therefore, accuracy and coverage must be analyzed together.
-
-\begin{figure}[h]
+\begin{figure}[tbp]
   \centering
-  \includegraphics[width=1.0\linewidth]{images/placeholder.png}
-  \caption{Placeholder: prefetch accuracy and coverage comparison.}
-  \label{fig:accuracy-coverage-placeholder}
+  \includegraphics[width=1.0\linewidth]{images/diagnostic_matrix_2x2.png}
+  \caption{Diagnostic prefetch-quality metrics vs.\ speedup for selected configurations. Each panel shows the metric most relevant for one benchmark, in its most representative placement/memory case: (a) SpMV accuracy, (b) quick-sort coverage, (c) BFS unused-prefetch ratio, (d) STREAM Triad late-prefetch ratio. Higher is better for accuracy and coverage; lower is better for unused and late ratios.}
+  \label{fig:diagnostics}
 \end{figure}
 
-This subsection should compare Next-line, Stride, AMPM, and IMP in terms of accuracy and coverage. For example, Next-line may have lower accuracy for irregular workloads but still produce good speedup if many of its prefetches are timely and the memory system has sufficient bandwidth. IMP may show higher usefulness for indirect memory patterns, especially when the benchmark exposes enough dependent address behavior.
+\noindent The SpMV panel (a) shows the clearest separation between prefetching philosophies in the whole study. IMP's best configurations combine accuracy around 0.55--0.58 with the highest speedups (right side of the panel), because the indirect pattern detector only issues a prefetch once a \texttt{vec[cols[j]]} relation is confirmed. The spatial prefetchers reach comparable speedups through much more aggressive streaming behavior, with substantially lower measured accuracy: the best Stride configuration at L2 reaches 1.62 with an accuracy of just 0.04 by streaming deep through the regular CSR arrays. Notably, the \emph{highest-accuracy} points in the panel (orange squares near accuracy 1.0) are conservative Stride configurations with speedups of only $\sim$1.39: they waste nothing but also cover too little. Accuracy alone identifies neither the best nor the worst configuration.
+
+\noindent The quick-sort panel (b) shows the opposite regime: coverage is uniformly high (0.5--0.97) and the speedup range is compressed (1.05--1.14), so all points cluster. When a benchmark's misses are easy to cover but memory stalls are small, prefetch quality metrics stop discriminating --- the bottleneck has moved elsewhere. IMP at L2 on quick sort is the extreme illustration: 0.93 accuracy, 0.92 coverage, only 7\% late, the best quality profile of any configuration in the study --- and still the \emph{lowest} speedup of the four families (1.12). Excellent prefetching of a non-bottleneck is worth little.
 
 \subsection{Timely, Late, and Unused Prefetches}
 \label{sec:res:timely-late-unused}
 
-A useful prefetch improves performance only if it arrives early enough. Therefore, prefetches are separated into timely, late, and unused categories. Timely prefetches arrive before the demand access and can hide latency. Late prefetches are useful but arrive too late to fully hide latency. Unused prefetches consume bandwidth and cache capacity without helping performance.
+Panels (c) and (d) of Figure~\ref{fig:diagnostics} examine the two failure modes of prefetching: fetching lines that are never used, and fetching lines too late.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=1.0\linewidth]{images/placeholder.png}
-  \caption{Placeholder: timely, late, and unused prefetches.}
-  \label{fig:timely-late-unused-placeholder}
-\end{figure}
+\noindent On BFS (panel c), the family ranking is strongly consistent with the unused-prefetch behavior. Stride's default configuration wins every BFS case while wasting only 7--11\% of its prefetches: its per-PC stride detection appears to focus selectively on the sequential edge-array scan and avoids much of the useless traffic generated by the other prefetchers. Next-line, IMP, and AMPM all waste 40--51\% of their prefetches at L1D --- roughly half of their memory traffic is useless, which both pollutes the 16\,KiB L1D and consumes bandwidth (Next-line \texttt{deg32} raises DRAM utilization to 0.49 versus Stride's 0.27, for a \emph{lower} speedup). BFS demonstrates that on mixed regular/irregular patterns, selectivity beats aggressiveness.
 
-This subsection should explain whether the speedup results are mainly caused by an increase in timely prefetches, a reduction in demand misses, or a change in unused prefetches. It should also identify cases where a prefetcher issues many requests but does not improve performance because many prefetches are late or unused.
+\noindent On Triad (panel d), late ratio is the most informative metric. Many selected Triad configurations, especially at L1D and also several at L2, have substantial late ratios of roughly 0.3--0.8. This is expected for a streaming kernel whose access stream can expose long DRAM latency faster than some prefetch configurations can fully hide it. The key observation is that late prefetches are not worthless here: configurations with substantial late ratios still deliver high speedups, because a late prefetch may still overlap part of the DRAM access with computation on earlier elements. Therefore, lateness reduces the potential benefit of a prefetch, but it does not always eliminate it. Late prefetches are most harmful when they also increase bandwidth pressure, queue occupancy, or cache contention. Under DDR4 2x, the extra bandwidth reduces this penalty, so the largest Triad speedups at L2 (1.64--1.69) can still coexist with moderate late ratios around 0.35--0.55. In contrast, on latency-bound SpMV, IMP's tuned configurations lower the late ratio from 0.48 for the default configuration toward 0.19--0.40 while increasing distance, suggesting that improved timeliness is an important part of IMP's tuning gain.
 
+\noindent Overall, unused prefetches are the dominant failure mode for irregular benchmarks (BFS, SpMV at L1D), while late prefetches are the dominant, but partially harmless, mode for streaming benchmarks (Triad, matmult at L2, where late ratios exceed 0.9).
+
+\FloatBarrier
 \subsection{Per-Benchmark Discussion}
 \label{sec:res:per-benchmark}
 
-This subsection summarizes the behavior of each benchmark individually.
+Here each benchmark is summarized individually, referring back to the per-case panels of Figure~\ref{fig:speedupplots}.
 
-\subsubsection{STREAM Triad}
-STREAM Triad is expected to favor simple spatial prefetchers because it contains regular streaming memory accesses. The analysis should compare whether Next-line and Stride outperform AMPM and IMP, and whether higher memory bandwidth improves the benefit of aggressive prefetching.
+\noindent\textbf{Triad} is the pure bandwidth-bound stream (baseline IPC 0.40, DRAM utilization $\sim$0.65 under 1x). Under DDR4 1x, all families are capped at 1.05--1.23 because the memory system is already near saturation; the ranking barely matters. Under DDR4 2x the picture changes completely: at L2, Next-line \texttt{deg8} reaches 1.69, AMPM 1.68, and Stride 1.64, while IMP trails at 1.48, its stream detector is a functional but weaker streaming prefetcher, and its indirect machinery has nothing to detect. The simple spatial prefetchers thus win the simplest pattern, and the benefit of prefetching here is almost entirely a function of available bandwidth and placement (L2 $>$ L1D by 9--15\%).
 
-\subsubsection{SpMV}
-SpMV contains sparse and indirect memory behavior, making it an important benchmark for IMP. The analysis should determine whether IMP provides an advantage over spatial prefetchers, and whether AMPM can exploit spatial structure in the sparse matrix representation. Coverage and timeliness are especially important for this benchmark.
+\noindent\textbf{SpMV} is IMP's showcase and the only benchmark it sweeps: 1.78/1.69/1.77/1.71 across the four cases. The mechanism differs by placement. At L2, IMP wins on quality: 0.55--0.58 accuracy from genuine \texttt{vec[cols[j]]} pattern detection, versus 0.04--0.25 for the spatial prefetchers, with far fewer late prefetches (0.38 vs.\ 0.96 for Stride). At L1D, all families converge to 1.6--1.8 by different means, where Next-line and IMP tolerate high unused ratios (0.74--0.78) to cover the streaming CSR arrays, while Stride stays precise but late. That even Next-line reaches 1.74 at L1D shows how much of SpMV's miss stream is the regular part of the kernel. IMP's edge comes from additionally covering part of the irregular gather. This is also the benchmark where parameter tuning pays the most for every family, seen as the default markers in Figure~\ref{fig:speedupplots} sit 12--18\% below the tuned bars.
 
-\subsubsection{Matrix Multiplication}
-Matrix multiplication has regular array-based behavior but may also have cache reuse depending on the implementation and problem size. The analysis should explain whether prefetchers provide only modest improvement or whether specific configurations reduce cache misses significantly.
+\noindent\textbf{Matmult} is the least memory-bound benchmark (baseline IPC 1.93; the blocked $128\times128$ working set largely fits in L2), and prefetching yields only 1.03--1.12. L2 placement is more effective for obtaining these small gains, where at L2 the prefetchers achieve 70--86\% coverage of the (few) L2 misses, and on the other hand at L1D coverage is essentially zero and AMPM's default even causes a 3\% slowdown through pollution of the small L1D. Late ratios at L2 exceed 0.9 for the spatial prefetchers --- with so few misses and long compute phases, timeliness hardly matters; even late prefetches arrive during computation. The benchmark's main role in the study is negative control: prefetching has limited impact because locality is already strong, and in these runs the only observed slowdown comes from aggressive prefetching into the small L1D.
 
-\subsubsection{Merge Sort}
-Merge sort has data movement and comparison behavior that may expose sequential accesses during merging. The analysis should determine whether spatial prefetchers are sufficient or whether AMPM/IMP provide additional benefit.
+\noindent\textbf{Merge sort} is the one benchmark AMPM wins in all four cases (1.16--1.20), although the margins over Next-line and Stride are small ($\le$0.02). Merging traverses several sequential runs simultaneously, which is precisely the multi-stream spatial pattern AMPM's access maps are built to capture. It's best configurations combine moderate accuracy (0.13--0.15) with the highest L1D coverage (0.26--0.29) at very low unused ratios ($<$0.01). The gains are bounded near 1.2 because merge sort's baseline load-to-use latency is only 6.7 cycles, where most of its time is comparison and copy work. IMP is competitive only after tuning (+4.5\%) and only because its stream detector covers the same sequential runs.
 
-\subsubsection{Quick Sort}
-Quick sort has data-dependent partitioning behavior. The analysis should examine whether prefetchers improve performance consistently or whether irregular control flow limits prefetch effectiveness.
+\noindent\textbf{Quick sort} shows the tightest packing of all benchmarks: at L1D/DDR4 1x, the top three families land at 1.183, 1.183, and 1.178. Partition scans are linear sweeps, so every prefetcher covers them (coverage 0.85--0.97), L1D demand misses are almost eliminated, and the remaining $\sim$1.18 speedup limit is likely due to non-memory bottlenecks such as data-dependent branches and dependencies. As discussed in Section~\ref{sec:res:accuracy-coverage}, IMP at L2 achieves the best prefetch-quality numbers in the study here and still finishes last. This is the cleanest demonstration that prefetch quality metrics matter only in proportion to the memory-boundedness of the workload.
 
-\subsubsection{BFS}
-BFS is algorithmically irregular, but the implementation uses an adjacency-array representation. Therefore, the edge traversal contains sequential scans through the edge array, while accesses to the visited array are indirect. The analysis should explain whether the observed performance is dominated by the sequential edge traversal or by the indirect visited-array accesses. This is important for understanding why IMP may or may not outperform Next-line and Stride.
-\noindent
-\lipsum[4]
+\noindent\textbf{BFS} was expected to favor IMP because of its indirect visited-array accesses, but the default Stride prefetcher wins all four cases (1.29--1.35) and IMP is consistently last or second-to-last at L2 (1.09 at L2/DDR4 1x). Two effects explain this inversion. First, the CSR edge-array scan dominates the miss stream, and BFS's traversal order makes the ``indirect'' accesses hard for IMP to learn: its detected patterns yield only 0.06--0.18 accuracy, no better than the spatial prefetchers. Second, wasted traffic is expensive here: BFS is the irregular benchmark with the highest DRAM pressure, and Next-line/IMP/AMPM discard 40--51\% of their prefetches, while Stride wastes only 7--11\% (Figure~\ref{fig:diagnostics}c). AMPM comes closest to Stride (within 0.01--0.02 in every case) by exploiting the same streams with more machinery. The lesson mirrors the conclusion of Section~\ref{sec:res:timely-late-unused}: algorithmic irregularity does not imply that an indirect prefetcher wins --- the data layout determines the profitable pattern.
 
+\FloatBarrier
 \section{Conclusion}
 \label{sec:conc}
 
-This project evaluated hardware data prefetching for a set of scientific and memory-intensive benchmarks on a simulated out-of-order Armv8 architecture. The main focus was on AMPM and IMP, which were compared against simpler Next-line and Stride prefetchers. The evaluation considered both L1D and L2 prefetcher placement, two DDR4 memory configurations, and both default and tuned prefetcher configurations.
+This project built a complete gem5-based evaluation pipeline comparing AMPM and IMP against Next-line and Stride prefetchers on an out-of-order Armv8 model, across six benchmarks, L1D and L2 placement, two DDR4 memory systems, and more than 3{,}000 simulations covering both default and systematically tuned configurations. The main findings are:
 
-The results show that prefetcher effectiveness depends strongly on benchmark memory access patterns. Simple spatial prefetchers can be highly effective for workloads with regular or streaming behavior. More complex prefetchers such as AMPM and IMP are expected to provide benefits when the benchmark exposes the type of access pattern they are designed for, such as multiple spatial streams or indirect memory references.
+\noindent\textbf{The dominant access pattern is the strongest predictor of which prefetcher wins in this benchmark set.} IMP wins only, but decisively, on SpMV (up to 1.78$\times$), the one benchmark with a learnable indirect pattern. AMPM wins the multi-stream merge sort. Simple Stride wins BFS in every case, and simple spatial prefetchers win the pure stream. Averaged over all 24 cases, best-tuned Stride (geometric mean 1.27) matches or beats AMPM (1.25), IMP (1.24), and Next-line (1.24).
 
-A key lesson is that algorithmic irregularity does not always imply that an indirect prefetcher will dominate. For example, a BFS implementation using contiguous adjacency arrays may still expose strong spatial locality during edge traversal, allowing Next-line or Stride prefetchers to perform well. Similarly, sparse workloads may contain both indirect accesses and regular streams, so the best prefetcher depends on which part of the memory behavior dominates execution time.
+\noindent\textbf{Algorithmic irregularity does not necessarily imply indirect prefetching wins.} BFS is the clearest example of this, as its compact adjacency-array layout turns most misses into sequential scans, Stride's selectivity (7--11\% unused prefetches versus 40--51\% for the others) preserves scarce bandwidth, and IMP finishes last despite BFS being a ``graph workload.'' The data structure, not the algorithm, determines the profitable pattern.
 
-The evaluation also highlights the importance of analyzing more than speedup alone. Cache miss rates, prefetch accuracy, coverage, timely prefetches, late prefetches, and unused prefetches are necessary to explain why a prefetcher improves or fails to improve performance. A prefetcher with lower accuracy may still perform well if it produces many timely prefetches and the memory system has sufficient bandwidth. Conversely, a prefetcher with high accuracy may provide limited speedup if its prefetches arrive too late or cover too few misses.
+\noindent\textbf{Placement and bandwidth interact with the benchmark, not the prefetcher.} Latency-sensitive irregular codes (BFS, SpMV, the sorts) prefer L1D placement for timeliness; streaming and reuse-heavy codes (Triad, matmult) prefer L2 for capacity and request concurrency, with Triad gaining up to 1.34$\times$ additional benefit when memory bandwidth is doubled. Conversely, on latency-bound SpMV, doubling bandwidth slightly \emph{reduces} the relative value of prefetching.
 
-The final report will complete this analysis by adding the AMPM results, the final Stage 3 IMP results, and detailed plots for speedup, default-versus-tuned behavior, cache miss rates, prefetch coverage, accuracy, timeliness, and unused prefetches.
-\noindent
-\lipsum[4]
+\noindent\textbf{In this benchmark set, the simple prefetcher defaults are more robust, while the complex prefetchers benefit more from tuning.} Tuning adds up to 18\% on the memory-bound benchmarks, and IMP both shows the largest sensitivity to tuning in these experiments (its multi-parameter configurations consistently beat single-parameter ones) and is the only family whose default causes a slowdown. With tuning, no prefetcher loses to the no-prefetch baseline in any case.
 
+\noindent\textbf{Speedup can be explained only by combining metrics.} The study contains configurations with near-perfect accuracy and coverage but the worst speedup of their case (IMP on quick sort at L2), and configurations with near-zero measured accuracy but 1.2--1.5$\times$ speedups (all families on Triad at L1D, where in-flight prefetches overlap latency without registering as useful). Accuracy, coverage, unused and late ratios, miss rates, and DRAM pressure metrics were all necessary to explain why each prefetcher wins or loses; no single metric, including speedup itself, is sufficient to explain all cases.
 
+\noindent Overall, the results support a pragmatic conclusion for HPC-style workloads: a well-tuned spatial prefetcher is a very strong default, while specialized prefetchers such as IMP are most valuable when their target pattern clearly dominates the miss stream.
 
 \newpage
 \bibliographystyle{ieeetr}

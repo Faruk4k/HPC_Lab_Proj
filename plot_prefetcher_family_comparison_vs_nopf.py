@@ -425,6 +425,101 @@ for pf_level, memory, condition_label in CONDITIONS:
     print(f"Wrote {out}")
 
 
+# Combined compact figure: all four conditions as a 2x2 grid in ONE image,
+# each panel showing all benchmarks x all families. Meant for the report,
+# replacing the per-benchmark and per-condition figures.
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(14, 9), sharey=True)
+axes = axes.flatten()
+
+families = ["Next-line", "Stride", "AMPM", "IMP"]
+width = 0.19
+x = list(range(len(BENCHMARKS)))
+offsets = {
+    "Next-line": -1.5 * width,
+    "Stride": -0.5 * width,
+    "AMPM": 0.5 * width,
+    "IMP": 1.5 * width,
+}
+
+y_max = plot_df_all["speedup_vs_nopf"].max() * 1.14
+
+for ax, (pf_level, memory, condition_label) in zip(axes, CONDITIONS):
+    cond_df = plot_df_all[
+        (plot_df_all["pf_level"] == pf_level)
+        & (plot_df_all["memory"] == memory)
+    ]
+
+    for family in families:
+        values = []
+        for benchmark in BENCHMARKS:
+            row = cond_df[
+                (cond_df["benchmark"] == benchmark)
+                & (cond_df["family"] == family)
+            ]
+            values.append(
+                float(row["speedup_vs_nopf"].iloc[0]) if not row.empty else float("nan")
+            )
+
+        positions = [i + offsets[family] for i in x]
+        bars = ax.bar(
+            positions, values, width=width, color=color_for_family(family)
+        )
+
+        for bar, value, benchmark in zip(bars, values, BENCHMARKS):
+            if pd.notna(value):
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2,
+                    value + 0.005,
+                    f"{value:.2f}",
+                    ha="center",
+                    va="bottom",
+                    fontsize=6.5,
+                    rotation=90,
+                )
+
+                key = (benchmark, pf_level, memory, family)
+                if key in default_lookup:
+                    ax.hlines(
+                        y=default_lookup[key],
+                        xmin=bar.get_x(),
+                        xmax=bar.get_x() + bar.get_width(),
+                        color="red",
+                        linewidth=1.8,
+                    )
+
+    ax.axhline(1.0, linestyle="--", linewidth=1, color="gray")
+    ax.set_xticks(x)
+    ax.set_xticklabels(BENCHMARKS, rotation=15, fontsize=9)
+    ax.set_ylim(0.9, y_max)
+    ax.set_title(condition_label, fontsize=11)
+    ax.grid(axis="y", linewidth=0.4, alpha=0.4)
+    ax.set_axisbelow(True)
+
+axes[0].set_ylabel("Speedup vs no-prefetch baseline")
+axes[2].set_ylabel("Speedup vs no-prefetch baseline")
+
+handles = [
+    plt.Rectangle((0, 0), 1, 1, color="C0", label="Best Next-line"),
+    plt.Rectangle((0, 0), 1, 1, color="C1", label="Best Stride"),
+    plt.Rectangle((0, 0), 1, 1, color="C2", label="Best AMPM"),
+    plt.Rectangle((0, 0), 1, 1, color="C3", label="Best IMP"),
+    plt.Line2D([0], [0], color="red", linewidth=1.8, label="Default config"),
+    plt.Line2D([0], [0], color="gray", linestyle="--", linewidth=1, label="No prefetch = 1.0x"),
+]
+fig.legend(handles=handles, loc="lower center", ncol=6, fontsize=10)
+
+fig.suptitle(
+    "Best prefetcher-family comparison vs no-prefetch baseline (all cases)",
+    fontsize=14,
+)
+plt.tight_layout(rect=[0.0, 0.05, 1.0, 0.96])
+
+out = OUTDIR / "all_conditions_prefetcher_family_comparison_vs_nopf.png"
+plt.savefig(out, dpi=150)
+plt.close()
+print(f"Wrote {out}")
+
+
 print()
 print(f"Done. Plots and CSVs are in: {OUTDIR}")
 print("Main CSV:")

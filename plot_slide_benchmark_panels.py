@@ -601,6 +601,127 @@ def plot_benchmark_metric(selected_long, benchmark, metric, metric_label):
     return True
 
 
+# Family colors matching the speedup comparison figure
+# (plot_prefetcher_family_comparison_vs_nopf.py), so the report figures
+# use one consistent palette.
+REPORT_FAMILY_COLORS = {
+    "Next-line": "C0",
+    "Stride": "C1",
+    "AMPM": "C2",
+    "IMP": "C3",
+}
+
+# One representative (benchmark, metric, case) per diagnostic story.
+DIAGNOSTIC_PANELS = [
+    ("spmv", "pf_accuracy", "Prefetch accuracy (higher is better)",
+     "l2", "ddr4_1x", "(a) SpMV: prefetch accuracy — L2, DDR4 1x"),
+    ("quick", "pf_coverage", "Prefetch coverage (higher is better)",
+     "l2", "ddr4_1x", "(b) Quick sort: prefetch coverage — L2, DDR4 1x"),
+    ("bfs", "pf_unused_ratio", "Unused-prefetch ratio (lower is better)",
+     "l1d", "ddr4_1x", "(c) BFS: unused-prefetch ratio — L1D, DDR4 1x"),
+    ("simple_triad", "pf_late_ratio", "Late-prefetch ratio (lower is better)",
+     "l2", "ddr4_2x", "(d) STREAM Triad: late-prefetch ratio — L2, DDR4 2x"),
+]
+
+
+def plot_diagnostic_matrix(selected_long):
+    """
+    Combined 2x2 report figure: for each of the four prefetch-quality metrics,
+    show only the most representative benchmark and placement/memory case,
+    using the same selected configurations as the full panel figures.
+    """
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8.5))
+    axes = axes.flatten()
+
+    for ax, (benchmark, metric, metric_label, pf_level, memory, title) in zip(
+        axes, DIAGNOSTIC_PANELS
+    ):
+        sub = selected_long[
+            (selected_long["benchmark"] == benchmark)
+            & (selected_long["pf_level"] == pf_level)
+            & (selected_long["memory"] == memory)
+        ].copy()
+
+        sub = sub[
+            pd.notna(sub["speedup_vs_nopf"])
+            & pd.notna(sub[metric])
+            & pd.notna(sub["selection_reason"])
+        ].copy()
+
+        for reason, reason_group in sub.groupby("selection_reason"):
+            marker = REASON_MARKERS.get(reason, "o")
+            dx, dy = reason_jitter(sub, metric, reason)
+
+            for family, group in reason_group.groupby("family"):
+                ax.scatter(
+                    group["speedup_vs_nopf"] + dx,
+                    group[metric] + dy,
+                    s=60 if reason != "top_speedup" else 90,
+                    alpha=0.78,
+                    color=REPORT_FAMILY_COLORS.get(family, "gray"),
+                    marker=marker,
+                    edgecolors="black",
+                    linewidths=0.5,
+                    zorder=4 if reason in ["default", "top_speedup"] else 3,
+                )
+
+        ax.axvline(1.0, linestyle="--", linewidth=1, color="gray")
+        ax.grid(alpha=0.25)
+        ax.set_axisbelow(True)
+        ax.set_title(title, fontsize=10.5)
+        ax.set_xlabel("Speedup vs no-prefetch", fontsize=9)
+        ax.set_ylabel(metric_label, fontsize=9)
+        ax.tick_params(labelsize=8)
+
+    family_handles = [
+        Line2D(
+            [0], [0],
+            marker="o",
+            color="w",
+            label=family,
+            markerfacecolor=color,
+            markeredgecolor="black",
+            markersize=8,
+        )
+        for family, color in REPORT_FAMILY_COLORS.items()
+    ]
+
+    reason_handles = [
+        Line2D(
+            [0], [0],
+            marker=marker,
+            color="black",
+            label=REASON_LABELS.get(reason, reason),
+            markerfacecolor="white",
+            markersize=8,
+            linestyle="None",
+        )
+        for reason, marker in REASON_MARKERS.items()
+    ]
+
+    baseline_handle = Line2D(
+        [0], [0],
+        color="gray",
+        linestyle="--",
+        label="No prefetch = 1.0x",
+    )
+
+    fig.legend(
+        handles=family_handles + reason_handles + [baseline_handle],
+        loc="lower center",
+        ncol=6,
+        fontsize=8.5,
+    )
+
+    plt.tight_layout(rect=[0, 0.07, 1, 1.0])
+
+    filename = os.path.join(OUTDIR, "diagnostic_matrix_2x2.png")
+    plt.savefig(filename, dpi=150)
+    plt.close(fig)
+
+    print(f"Wrote combined diagnostic figure: {filename}")
+
+
 def main():
     df = load_all_results()
     selected_long = build_selected_dataset(df)
@@ -612,6 +733,8 @@ def main():
             ok = plot_benchmark_metric(selected_long, benchmark, metric, metric_label)
             if ok:
                 written += 1
+
+    plot_diagnostic_matrix(selected_long)
 
     print(f"Wrote selected benchmark-panel plots to: {OUTDIR}")
     print(f"Wrote selected reason-entry CSV: {os.path.join(OUTDIR, 'selected_reason_entries_for_plots.csv')}")
