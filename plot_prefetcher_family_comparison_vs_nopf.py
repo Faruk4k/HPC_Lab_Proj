@@ -14,7 +14,6 @@ NEXTLINE = Path("nextline/nextline_results_vs_nopf.csv")
 STRIDE = Path("stride/stride_results_vs_nopf.csv")
 AMPM = Path("ampm/ampm_results_vs_nopf.csv")
 
-# Prefer the final IMP file including Stage 3. Fall back to older files if needed.
 IMP_CANDIDATES = [
     Path("imp/imp_all_stages_including_stage3_vs_nopf.csv"),
 ]
